@@ -1,24 +1,71 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type    | Options                                       |
+| ------------------ | ------- | --------------------------------------------- |
+| name               | string  | null: false                                   |
+| email              | string  | null: false, unique: true, confirmation: true |
+| encrypted_password | string  | null: false, length: { minimum: 6 }           |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :trips, through: trip_users
+- has_many :comments
 
-* Configuration
+## trips テーブル
 
-* Database creation
+| Column       | Type       | Options                        |
+| ------------ | ---------- | -------------------------------|
+| title        | string     | null: false                    |
+| start_date   | date       |                                |
+| end_date     | date       |                                |
+| memo         | text       |                                |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- has_many   :user, through: trip_users
+- has_many   :schedules
+- has_many   :comments
 
-* Services (job queues, cache servers, search engines, etc.)
+## trip_users テーブル
 
-* Deployment instructions
+| Column       | Type       | Options                        |
+| ------------ | ---------- | -------------------------------|
+| user         | references | null: false, foreign_key: true |
+| trip         | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :trip
+
+## schedules テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| day_id        | integer    |                                |
+| user          | references | null: false, foreign_key: true |
+| trip          | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :trip
+- has_many   :sights
+
+## sights テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| name          | string     | null: false                    |
+| category_id   | integer    | null: false                    |
+| start_time    | date       |                                |
+| end_time      | date       |                                |
+| link          | string     |                                |
+| memo          | text       |                                |
+| fee           | integer    |                                |
+| schedule      | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :schedule
