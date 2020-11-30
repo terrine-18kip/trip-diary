@@ -8,4 +8,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :password, format: { with: PASSWORD_REGEX }
 
+  has_one_attached :image
 end
