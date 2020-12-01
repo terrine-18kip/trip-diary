@@ -1,11 +1,18 @@
-<header>
-  <ul>
+<header class="top-page-header">
+  <div class="header-left">
+    <%=link_to image_tag("title_logo_diary1.png", height: '60'), root_path, class:"title-logo"%>
+  </div>
+  <ul class="header-list-right">
     <% if user_signed_in? %>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to current_user.name, edit_user_path(current_user), method: :get %></li>
-      <% if current_user.image.attached? %>
-        <%= image_tag current_user.image, class:"image-list"%>
-      <% end %>
+      <li>
+        <%= link_to current_user.name, edit_user_path(current_user), method: :get, class:"header-user-name" %></li>
+        <% if current_user.image.attached? %>
+          <%=link_to edit_user_path(current_user), method: :get do %>
+            <%= image_tag current_user.image, class:"header-user-image" %>
+          <% end %>
+        <% end %>
+      </li>
     <% else %>
       <li><%= link_to 'ログイン', new_user_session_path %></li>
       <li><%= link_to '新規登録', new_user_registration_path %></li>

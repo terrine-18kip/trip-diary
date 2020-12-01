@@ -1,0 +1,40 @@
+a {
+  color: dimgrey;
+}
+
+.top-page-header {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+}
+
+.header-list-right {
+  display: flex;
+  align-items: center;
+}
+
+li {
+  padding: 0 10px;
+  display: flex;
+}
+
+li>a {
+  text-decoration: none;
+
+}
+
+.header-user-name {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-user-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  vertical-align: middle;
+}
