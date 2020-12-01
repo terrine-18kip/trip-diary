@@ -15,5 +15,8 @@
  */
 
  * {
-   box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: vdl-v7gothic, sans-serif;
+  font-style: normal;
+  font-weight: 300;
  }
