@@ -1,0 +1,6 @@
+.main-top-image {
+  width: 100vw;
+  height: 22vw;
+  object-fit: cover;
+  object-position: 50% 70%;
+}
