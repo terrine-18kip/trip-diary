@@ -9,4 +9,6 @@ class User < ApplicationRecord
   validates :password, format: { with: PASSWORD_REGEX }
 
   has_one_attached :image
+  has_many         :trip_users
+  has_many         :trips, through: :trip_users
 end
