@@ -69,12 +69,7 @@
       <label class="form-text">友達を追加する</label>
     </div>
     <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
-    <select name="trip[user_ids][]">
-      <option value="">チャットするユーザーを選択してください</option>
-      <% User.where.not(id: current_user.id).each do |user| %>
-        <option value=<%=user.id%>><%= user.name %></option>
-      <% end %>
-    </select>
+    <input name="trip[user_ids][]" placeholder="IDを入力して下さい">
   </div>
 
  <div class='register-btn'>
