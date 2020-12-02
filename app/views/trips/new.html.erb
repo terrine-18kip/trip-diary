@@ -17,30 +17,14 @@
     <%= f.text_field :title, class:"input-default", id:"title", placeholder:"", autofocus: true %>
   </div>
 
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード</label>
-    </div>
-    <%= f.password_field :end_time, class:"input-default", id:"end_time", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">メモ</label>
-    </div>
-    <%= f.text_area :memo, class:"input-default", id:"memo", placeholder:"" %>
-  </div>
-  <div class="form-group">
-  </div>
-
-  <div class="form-group">
+ <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">開始日</label>
     </div>
     <div class='input-birth-wrap'>
       <%= raw sprintf(
                   f.date_select(
-                    :start_time,
+                    :start_date,
                     class:'select-birth',
                     id:"birth-date",
                     use_month_numbers: true,
@@ -59,7 +43,7 @@
     <div class='input-birth-wrap'>
       <%= raw sprintf(
                   f.date_select(
-                    :end_time,
+                    :end_date,
                     class:'select-birth',
                     id:"birth-date",
                     use_month_numbers: true,
@@ -69,6 +53,28 @@
                     date_separator: '%s'),
                   "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
     </div>
+  </div>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">メモ</label>
+    </div>
+    <%= f.text_area :memo, class:"input-default", id:"memo", placeholder:"" %>
+  </div>
+  <div class="form-group">
+  </div>
+
+   <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">友達を追加する</label>
+    </div>
+    <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
+    <select name="trip[user_ids][]">
+      <option value="">チャットするユーザーを選択してください</option>
+      <% User.where.not(id: current_user.id).each do |user| %>
+        <option value=<%=user.id%>><%= user.name %></option>
+      <% end %>
+    </select>
   </div>
 
  <div class='register-btn'>
