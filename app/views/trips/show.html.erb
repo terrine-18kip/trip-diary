@@ -23,16 +23,20 @@
       <% @plans.each do |plan| %>
         <div>
           <%= "#{plan.daily}日目" %>
-          <%= link_to '削除', trip_plan_path(plan.trip_id, plan.id), method: :delete %>
+          <% if editor_user? %>
+            <%= link_to '削除', trip_plan_path(plan.trip_id, plan.id), method: :delete %>
+          <% end %>
         </div>
       <% end %>
     <% end %>
   </div>
 
   <div>
-    <%= form_with(model: [@trip, @plan], local: true) do |f1| %>
-      <%= f1.number_field :daily %>日目 
-      <%= f1.submit '追加' %>
+    <% if editor_user? %>
+      <%= form_with(model: [@trip, @plan], local: true) do |f1| %>
+        <%= f1.number_field :daily %>日目 
+        <%= f1.submit '追加' %>
+      <% end %>
     <% end %>
   </div>
 

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: 'trips#index'
   resources :users, only: [:edit, :update]
   resources :trips do
-    resources :plans, only: [:create, :destroy]
+    resources :plans, only: [:create, :destroy] do
+      resources :spots, only: [:create, :destroy]
+    end
   end
 end
