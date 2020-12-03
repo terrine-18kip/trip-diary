@@ -22,9 +22,16 @@
     <% if @plans %>
       <% @plans.each do |plan| %>
         <div>
-          <%= "#{plan.day_id}日目" %>
+          <%= "#{plan.daily}日目" %>
         </div>
       <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form_with(model: [@trip, @plan], local: true) do |f1| %>
+      <%= f1.number_field :daily %>日目
+      <%= f1.submit '追加' %>
     <% end %>
   </div>
 

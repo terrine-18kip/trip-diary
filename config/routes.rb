@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: 'trips#index'
   resources :users, only: [:edit, :update]
   resources :trips do
-    resources :plans, only: [:index, :create]
+    resources :plans, only: :create
   end
 end

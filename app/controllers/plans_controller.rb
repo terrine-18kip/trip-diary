@@ -1,7 +1,11 @@
 class PlansController < ApplicationController
-  def index
+  def create
+    plan = Plan.create(plan_params)
+    redirect_to trip_path(plan.trip.id)
   end
 
-  def create
+  private
+  def plan_params
+    params.require(:plan).permit(:daily).merge(trip_id: params[:trip_id])
   end
 end
