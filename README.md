@@ -45,7 +45,6 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | day_id        | integer    |                                |
-| user          | references | null: false, foreign_key: true |
 | trip          | references | null: false, foreign_key: true |
 
 ### Association
@@ -57,10 +56,10 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| name          | string     | null: false                    |
+| spot          | string     | null: false                    |
 | category_id   | integer    | null: false                    |
-| start_time    | date       |                                |
-| end_time      | date       |                                |
+| start_time    | time       |                                |
+| end_time      | time       |                                |
 | link          | string     |                                |
 | memo          | text       |                                |
 | fee           | integer    |                                |
