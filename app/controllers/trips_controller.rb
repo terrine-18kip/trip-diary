@@ -55,32 +55,26 @@ class TripsController < ApplicationController
     @trip.users.each do |user|
       editor_ids << user.id
     end
-    return editor_ids.include?(current_user.id)
+    editor_ids.include?(current_user.id)
   end
 
   def move_to_index
-    unless editor_user?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless editor_user?
   end
 
   def create_user_valid?
     user_validation = params[:trip][:user_ids]
-    user_validation.split(",")
+    user_validation.split(',')
     user_validation.each do |user_id|
-      unless User.find_by(id: user_id)
-        render :edit
-      end
+      render :edit unless User.find_by(id: user_id)
     end
   end
 
   def update_user_valid?
     user_validation = params[:trip][:user_ids]
-    user_validation.split(",")
+    user_validation.split(',')
     user_validation.each do |user_id|
-      unless User.find_by(id: user_id)
-        render :edit
-      end
+      render :edit unless User.find_by(id: user_id)
     end
   end
 end
