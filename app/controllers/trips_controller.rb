@@ -1,6 +1,8 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :destroy]
+  before_action :create_user_valid?, only: :create
+  before_action :update_user_valid?, only: :update
 
   helper_method :editor_user?
 
@@ -59,6 +61,26 @@ class TripsController < ApplicationController
   def move_to_index
     unless editor_user?
       redirect_to action: :index
+    end
+  end
+
+  def create_user_valid?
+    user_validation = params[:trip][:user_ids]
+    user_validation.split(",")
+    user_validation.each do |user_id|
+      unless User.find_by(id: user_id)
+        render :edit
+      end
+    end
+  end
+
+  def update_user_valid?
+    user_validation = params[:trip][:user_ids]
+    user_validation.split(",")
+    user_validation.each do |user_id|
+      unless User.find_by(id: user_id)
+        render :edit
+      end
     end
   end
 end
