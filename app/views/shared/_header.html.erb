@@ -4,6 +4,7 @@
   </div>
   <ul class="header-list-right">
     <% if user_signed_in? %>
+      <li><%= link_to '旅の作成', new_trip_path %></li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       <li>
         <%= link_to current_user.name, edit_user_path(current_user), method: :get, class:"header-user-name" %></li>
