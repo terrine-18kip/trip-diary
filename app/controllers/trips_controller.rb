@@ -40,6 +40,12 @@ class TripsController < ApplicationController
   end
 
   def destroy
+    if editor_user?
+      @trip.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
