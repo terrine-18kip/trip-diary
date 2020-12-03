@@ -6,12 +6,26 @@
       <%= link_to '削除する', trip_path(@trip.id), method: :delete %>
     <% end %>
   </div>
-  <p><%= @trip.title %></p>
-  <p>開始日：<%= @trip.start_date %></p>
-  <p>終了日：<%= @trip.end_date %></p>
-  <p><%= @trip.memo %></p>
-  <p>参加者</p>
-  <% @trip.users.each do |user| %>
-    <p><%= user.name %></p>
-  <% end %>
+
+  <div>
+    <p><%= @trip.title %></p>
+    <p>開始日：<%= @trip.start_date %></p>
+    <p>終了日：<%= @trip.end_date %></p>
+    <p><%= @trip.memo %></p>
+    <p>参加者</p>
+    <% @trip.users.each do |user| %>
+      <p><%= user.name %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <% if @plans %>
+      <% @plans.each do |plan| %>
+        <div>
+          <%= "#{plan.day_id}日目" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>

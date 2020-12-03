@@ -24,9 +24,12 @@ class TripsController < ApplicationController
   end
 
   def show
+    @plans = @trip.plans.all
   end
 
   def edit
+    @plan = Plan.new
+    @plans = @trip.plans.all
   end
 
   def update

@@ -1,5 +1,5 @@
 class Plan < ApplicationRecord
-  validates :day_id, presence: true
+  validates :daily, presence: true
 
   belongs_to :trip
 end
