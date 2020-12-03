@@ -8,7 +8,7 @@ class CreateSpots < ActiveRecord::Migration[6.0]
       t.integer    :fee
       t.string     :link
       t.text       :memo
-      t.references :plan
+      t.references :plan, foreign_key: true
       t.timestamps
     end
   end
