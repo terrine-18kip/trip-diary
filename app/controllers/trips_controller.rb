@@ -66,7 +66,7 @@ class TripsController < ApplicationController
     user_validation = params[:trip][:user_ids]
     user_validation.split(',')
     user_validation.each do |user_id|
-      render :edit unless User.find_by(id: user_id)
+      render :new unless User.find_by(id: user_id)
     end
   end
 
