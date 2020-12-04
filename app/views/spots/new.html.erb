@@ -15,7 +15,7 @@
     <div class='form-text-wrap'>
       <label class="form-text">カテゴリー</label>
     </div>
-    <%= f.number_field :category_id, class:"input-default", id:"category_id", placeholder:"", autofocus: true %>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"input-default", id:"category_id", placeholder:"", autofocus: true}) %>
   </div>
 
   <div class="form-group">

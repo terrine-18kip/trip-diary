@@ -3,4 +3,7 @@ class Spot < ApplicationRecord
   validates :category_id, presence: true
 
   belongs_to :plan
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
 end
