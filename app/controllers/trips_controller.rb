@@ -7,7 +7,7 @@ class TripsController < ApplicationController
   helper_method :editor_user?
 
   def index
-    @trips = Trip.all
+    @trips = Trip.all.order(created_at: 'DESC')
   end
 
   def new
@@ -56,14 +56,6 @@ class TripsController < ApplicationController
 
   def trip_params
     params.require(:trip).permit(:title, :start_date, :end_date, :memo, user_ids: [])
-  end
-
-  def editor_user?
-    editor_ids = []
-    @trip.users.each do |user|
-      editor_ids << user.id
-    end
-    editor_ids.include?(current_user.id)
   end
 
   def move_to_index
