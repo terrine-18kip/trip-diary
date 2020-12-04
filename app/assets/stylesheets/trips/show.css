@@ -1,3 +1,61 @@
-.trip-show {
-  padding: 160px 40px 0;
+.show-main {
+  max-width: 1080px;
+  width: 96vw;
+  margin: 0 auto;
+  padding: 160px 40px;
+}
+
+
+.show-trip {
+  padding: 20px;
+  margin-bottom: 3em;
+  background-color: #f5f8fa;
+}
+
+.show-trip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4em;
+}
+
+.show-trip-title {
+  font-size: larger;
+  padding-left: 10%;
+}
+
+.show-trip-edit {
+  padding-right: 6%;
+}
+
+.show-trip-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.show-trip-left {
+  width: 20%;
+  text-align: center;
+}
+
+.show-trip-right {
+  width: 75%;
+  display: flex;
+}
+
+
+.show-plan {
+  height: 3em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+
+
+.show-spot {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3em;
 }

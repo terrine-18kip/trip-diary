@@ -46,11 +46,3 @@ a {
   padding: 8px;
   font-size: smaller;
 }
-
-.trip-user-image {
-  width: 1.5em;
-  height: 1.5em;
-  object-fit: cover;
-  border-radius: 50%;
-  vertical-align: middle;
-}

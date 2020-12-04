@@ -21,7 +21,7 @@
           <% trip.users.each do |user| %>
             <div class="trip-member">
               <% if user.image.attached? %>
-                <%= image_tag user.image, class:"trip-user-image" %>
+                <%= image_tag user.image, class:"user-image-small" %>
               <% end %>
               <%= user.name %>
             </div>
