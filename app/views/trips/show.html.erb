@@ -57,7 +57,7 @@
         </div>
 
         <div class="show-spot">
-          <%= link_to 'スケジュール追加', class:"show-spot-new" %>
+          <%= link_to 'スケジュール追加', new_trip_plan_spot_path(plan.trip_id, plan.id), class:"show-spot-new" %>
         </div>
 
       <% end %>
