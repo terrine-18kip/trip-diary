@@ -15,7 +15,34 @@ class SpotsController < ApplicationController
     end
   end
 
+  def edit
+    @spot = Spot.find(params[:id])
+    @plan = Plan.find(params[:plan_id])
+    @trip = Trip.find(params[:trip_id])
+    redirect_to root_path unless editor_user?
+  end
+
+  def update
+    @spot = Spot.find(params[:id])
+    @plan = Plan.find(params[:plan_id])
+    @trip = Trip.find(params[:trip_id])
+    if @spot.update(spot_params)
+      redirect_to trip_path(@spot.plan.trip.id)
+    else
+      render :edit
+    end
+  end
+
   def destroy
+    @spot = Spot.find(params[:id])
+    @plan = Plan.find(params[:plan_id])
+    @trip = Trip.find(params[:trip_id])
+    if editor_user?
+      @spot.destroy
+      redirect_to trip_path(@spot.plan.trip.id)
+    else
+      redirect_to root_path
+    end
   end
 
   private
