@@ -9,7 +9,7 @@
       <li>
         <%= link_to current_user.name, edit_user_path(current_user), method: :get, class:"header-user-name" %></li>
         <% if current_user.image.attached? %>
-          <%=link_to edit_user_path(current_user), method: :get do %>
+          <%=link_to user_path(current_user), method: :get do %>
             <%= image_tag current_user.image, class:"header-user-image" %>
           <% end %>
         <% end %>

@@ -5,6 +5,17 @@
 
 <div class="main">
 
+  <div class="user-info">
+    <div><%= image_tag @user.image, class:"image-list" %></div>
+    <div class="user-info-right">
+      <p class="user-name"><%= @user.name %></p>
+      <p class="user-id">ID：<%= @user.id %></p>
+      <% if current_user.id == @user.id %>
+        <p><%= link_to 'ユーザー情報の編集', edit_user_path(current_user), method: :get %></p>
+      <% end %>
+    </div>
+  </div>
+
   <div class="trip-lists">
     <% if @trips != nil %>
       <% @trips.each do |trip| %>
