@@ -1,6 +1,48 @@
+a {
+  text-decoration: none;
+}
+
 .main-top-image {
   width: 100vw;
   height: 22vw;
   object-fit: cover;
   object-position: 50% 70%;
+}
+
+.trip-lists {
+  max-width: 1280px;
+  width: 96vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.trip-list {
+  display: block;
+  width: 32%;
+  margin: .5%;
+  padding: 1vw;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease-in-out;
+}
+
+.trip-list:hover {
+  background-color: #f5f8fa;
+  transition: all 0.3s ease-in-out;
+}
+
+.trip-title {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.trip-members {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.trip-member {
+  padding: 8px;
+  font-size: smaller;
 }

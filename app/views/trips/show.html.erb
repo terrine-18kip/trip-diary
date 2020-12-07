@@ -1,17 +1,97 @@
 <%= render "shared/header" %>
-<div class="trip-show">
+
+<div class="show-main">
+
+  <div class="show-trip">
+
+    <div class="show-trip-head">
+      <h1 class="show-trip-title"><%= @trip.title %></h1>
+      <div class="show-trip-edit">
+        <% if user_signed_in? && editor_user? %>
+          <%= link_to '編集する', edit_trip_path(@trip.id), method: :get %>
+          <%= link_to '削除する', trip_path(@trip.id), method: :delete %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="show-trip-list">
+      <div class="show-trip-left">期間</div>
+      <div class="show-trip-right"><%= @trip.start_date %>〜<%= @trip.end_date %></div>
+    </div>
+
+    <div class="show-trip-list">
+      <div class="show-trip-left">メンバー</div>
+      <div class="show-trip-right">
+        <% @trip.users.each do |user| %>
+          <div class="trip-member">
+            <% if user.image.attached? %>
+              <%= image_tag user.image, class:"user-image-small" %>
+            <% end %>
+            <%= user.name %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="show-trip-list">
+      <div class="show-trip-left">メモ</div>
+      <div class="show-trip-right"><%= @trip.memo %></div>
+    </div>
+  </div>
+
   <div>
-    <% if user_signed_in? && editor_user? %>
-      <%= link_to '編集する', edit_trip_path(@trip.id), method: :get %>
-      <%= link_to '削除する', trip_path(@trip.id), method: :delete %>
+    <% if @plans %>
+      <% @plans.each do |plan| %>
+        <div class="show-plan">
+          <h2><%= "#{plan.daily}日目" %></h2>
+          <div>
+            <% if plan.trip.start_date %>
+              <%= plan.trip.start_date + plan.daily - 1 %>
+            <% end %>
+          </div>
+          <div class="show-plan-destroy">
+            <% if editor_user? %>
+              <%= link_to '削除', trip_plan_path(@trip.id, plan.id), method: :delete %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="show-spot">
+          <div class="show-spot-list">
+            <% if plan.spots %>
+              <% plan.spots.each do |spot| %>
+                <%= spot.name %>
+                <%= spot.category.name %>
+                <%= spot.start_time %>
+                <%= spot.end_time %>
+                <%= spot.fee %>
+                <%= spot.link %>
+                <%= spot.memo %>
+                <% if editor_user? %>
+                  <%= link_to '編集', edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get %>
+                  <%= link_to '削除', trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="show-spot-new">
+            <% if editor_user? %>
+              <%= link_to 'スケジュール追加', new_trip_plan_spot_path(@trip.id, plan.id) %>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
     <% end %>
   </div>
-  <p><%= @trip.title %></p>
-  <p>開始日：<%= @trip.start_date %></p>
-  <p>終了日：<%= @trip.end_date %></p>
-  <p><%= @trip.memo %></p>
-  <p>参加者</p>
-  <% @trip.users.each do |user| %>
-    <p><%= user.name %></p>
-  <% end %>
+
+  <div>
+    <% if editor_user? %>
+      <%= form_with(model: [@trip, @plan], local: true) do |f1| %>
+        <%= f1.number_field :daily %>日目 
+        <%= f1.submit '追加' %>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>

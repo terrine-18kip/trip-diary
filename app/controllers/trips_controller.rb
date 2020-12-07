@@ -7,7 +7,7 @@ class TripsController < ApplicationController
   helper_method :editor_user?
 
   def index
-    @trips = Trip.all
+    @trips = Trip.all.order(created_at: 'DESC')
   end
 
   def new
@@ -24,6 +24,8 @@ class TripsController < ApplicationController
   end
 
   def show
+    @plan = Plan.new
+    @plans = @trip.plans.all
   end
 
   def edit
@@ -38,6 +40,12 @@ class TripsController < ApplicationController
   end
 
   def destroy
+    if editor_user?
+      @trip.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
@@ -50,14 +58,6 @@ class TripsController < ApplicationController
     params.require(:trip).permit(:title, :start_date, :end_date, :memo, user_ids: [])
   end
 
-  def editor_user?
-    editor_ids = []
-    @trip.users.each do |user|
-      editor_ids << user.id
-    end
-    editor_ids.include?(current_user.id)
-  end
-
   def move_to_index
     redirect_to action: :index unless editor_user?
   end
@@ -66,7 +66,7 @@ class TripsController < ApplicationController
     user_validation = params[:trip][:user_ids]
     user_validation.split(',')
     user_validation.each do |user_id|
-      render :edit unless User.find_by(id: user_id)
+      render :new unless User.find_by(id: user_id)
     end
   end
 

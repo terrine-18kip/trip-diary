@@ -25,7 +25,7 @@
 ### Association
 
 - has_many   :user, through: trip_users
-- has_many   :schedules
+- has_many   :plans
 - has_many   :comments
 
 ## trip_users テーブル
@@ -40,32 +40,31 @@
 - belongs_to :user
 - belongs_to :trip
 
-## schedules テーブル
+## plans テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| day_id        | integer    |                                |
-| user          | references | null: false, foreign_key: true |
+| daily         | integer    |                                |
 | trip          | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :trip
-- has_many   :sights
+- has_many   :spots
 
-## sights テーブル
+## spots テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | name          | string     | null: false                    |
 | category_id   | integer    | null: false                    |
-| start_time    | date       |                                |
-| end_time      | date       |                                |
+| start_time    | time       |                                |
+| end_time      | time       |                                |
+| fee           | integer    |                                |
 | link          | string     |                                |
 | memo          | text       |                                |
-| fee           | integer    |                                |
-| schedule      | references | null: false, foreign_key: true |
+| plan          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :schedule
+- belongs_to :plan
