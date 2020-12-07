@@ -14,6 +14,7 @@ class PlansController < ApplicationController
   end
 
   private
+
   def plan_params
     params.require(:plan).permit(:daily).merge(trip_id: params[:trip_id])
   end

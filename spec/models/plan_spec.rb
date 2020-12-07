@@ -17,15 +17,15 @@ RSpec.describe Plan, type: :model do
     end
 
     it 'dailyがinteger以外では登録できないこと' do
-      @plan.daily = "１"
+      @plan.daily = '１'
       @plan.valid?
-      expect(@plan.errors.full_messages).to include("Daily is not a number")
+      expect(@plan.errors.full_messages).to include('Daily is not a number')
     end
 
     it 'tripが紐ついていないと登録できないこと' do
       @plan.trip = nil
       @plan.valid?
-      expect(@plan.errors.full_messages).to include("Trip must exist")
+      expect(@plan.errors.full_messages).to include('Trip must exist')
     end
   end
 end

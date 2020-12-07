@@ -50,5 +50,4 @@ class SpotsController < ApplicationController
   def spot_params
     params.require(:spot).permit(:name, :category_id, :start_time, :end_time, :fee, :link, :memo).merge(plan_id: params[:plan_id])
   end
-
 end

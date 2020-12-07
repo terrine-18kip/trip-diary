@@ -38,9 +38,9 @@ RSpec.describe Spot, type: :model do
     end
 
     it 'feeがinteger以外では登録できないこと' do
-      @spot.fee = "１"
+      @spot.fee = '１'
       @spot.valid?
-      expect(@spot.errors.full_messages).to include("Fee is not a number")
+      expect(@spot.errors.full_messages).to include('Fee is not a number')
     end
 
     it 'linkが空でも登録できること' do
@@ -56,7 +56,7 @@ RSpec.describe Spot, type: :model do
     it 'planが紐ついていないと登録できないこと' do
       @spot.plan = nil
       @spot.valid?
-      expect(@spot.errors.full_messages).to include("Plan must exist")
+      expect(@spot.errors.full_messages).to include('Plan must exist')
     end
   end
 end
