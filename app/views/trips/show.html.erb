@@ -51,7 +51,7 @@
           </div>
           <div class="show-plan-destroy">
             <% if editor_user? %>
-              <%= link_to '削除', trip_plan_path(plan.trip_id, plan.id), method: :delete %>
+              <%= link_to '削除', trip_plan_path(@trip.id, plan.id), method: :delete %>
             <% end %>
           </div>
         </div>
@@ -67,12 +67,16 @@
                 <%= spot.fee %>
                 <%= spot.link %>
                 <%= spot.memo %>
+                <% if editor_user? %>
+                  <%= link_to '編集', edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get %>
+                  <%= link_to '削除', trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete %>
+                <% end %>
               <% end %>
             <% end %>
           </div>
           <div class="show-spot-new">
             <% if editor_user? %>
-              <%= link_to 'スケジュール追加', new_trip_plan_spot_path(plan.trip_id, plan.id) %>
+              <%= link_to 'スケジュール追加', new_trip_plan_spot_path(@trip.id, plan.id) %>
             <% end %>
           </div>
         </div>
