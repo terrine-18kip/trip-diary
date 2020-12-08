@@ -1,22 +1,31 @@
-<header class="top-page-header">
-  <div class="header-left">
-    <%=link_to image_tag("title_logo_diary1.png", height: '60'), root_path, class:"title-logo"%>
+<header>
+  <div class="top-page-header">
+    <div class="header-left">
+      <%=link_to image_tag("title_logo_diary1.png", height: '60'), root_path, class:"title-logo"%>
+    </div>
+    <ul class="header-list-right">
+      <% if user_signed_in? %>
+        <li><%= link_to '旅の作成', new_trip_path %></li>
+        <li class="header-user-info", id="user-info">
+          <div class="header-user-name">
+            <%= current_user.name %>
+          </div>
+          <div>
+            <% if current_user.image.attached? %>
+              <%= image_tag current_user.image, class:"header-user-image" %>
+            <% end %>
+          </div>
+        </li>
+          <ul class="user-info-list hidden" id="pull-down">
+            <li>ID：<%= current_user.id %></li>
+            <li><%= link_to 'マイページ', user_path(current_user), method: :get %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+      <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><%= link_to '新規登録', new_user_registration_path %></li>
+      <% end %>
+    </ul>
   </div>
-  <ul class="header-list-right">
-    <% if user_signed_in? %>
-      <li><%= link_to '旅の作成', new_trip_path %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      <li>
-        <%= link_to current_user.name, edit_user_path(current_user), method: :get, class:"header-user-name" %></li>
-        <% if current_user.image.attached? %>
-          <%=link_to user_path(current_user), method: :get do %>
-            <%= image_tag current_user.image, class:"header-user-image" %>
-          <% end %>
-        <% end %>
-      </li>
-    <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path %></li>
-      <li><%= link_to '新規登録', new_user_registration_path %></li>
-    <% end %>
-  </ul>
+
 </header>

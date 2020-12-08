@@ -27,9 +27,14 @@ li>a {
 
 }
 
+.header-user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .header-user-name {
-  display: inline-block;
-  vertical-align: middle;
+  padding-right: .5em;
 }
 
 .header-user-image {
@@ -38,4 +43,16 @@ li>a {
   object-fit: cover;
   border-radius: 50%;
   vertical-align: middle;
+}
+
+.user-info-list {
+  position: absolute;
+  width: 150px;
+  top: 80px;
+  right: 10px;
+  background-color: #ccc;
+}
+
+.hidden {
+  display: none;
 }
