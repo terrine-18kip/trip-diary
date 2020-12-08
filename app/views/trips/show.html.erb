@@ -74,7 +74,7 @@
               <% plan.spots.each do |spot| %>
                 <div>
                   <%= spot.name %>
-                  <%= spot.category.name %>
+                  <%= raw spot.category.icon %>
                   <% if spot.start_time %>
                     <%= l spot.start_time %>
                   <% end %>
