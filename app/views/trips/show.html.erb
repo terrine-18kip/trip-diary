@@ -72,21 +72,23 @@
           <div class="show-spot-list">
             <% if plan.spots %>
               <% plan.spots.each do |spot| %>
-                <%= spot.name %>
-                <%= spot.category.name %>
-                <% if spot.start_time %>
-                  <%= l spot.start_time %>
-                <% end %>
-                <% if spot.end_time %>
-                  <%= l spot.end_time %>
-                <% end %>
-                <%= "#{spot.fee}円" %>
-                <%= link_to spot.link, spot.link, target: :_blank %>
-                <%= spot.memo %>
-                <% if editor_user? %>
-                  <%= link_to '編集', edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get %>
-                  <%= link_to '削除', trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete %>
-                <% end %>
+                <div>
+                  <%= spot.name %>
+                  <%= spot.category.name %>
+                  <% if spot.start_time %>
+                    <%= l spot.start_time %>
+                  <% end %>
+                  <% if spot.end_time %>
+                    <%= l spot.end_time %>
+                  <% end %>
+                  <%= "#{spot.fee}円" %>
+                  <%= link_to spot.link, spot.link, target: :_blank %>
+                  <%= spot.memo %>
+                  <% if editor_user? %>
+                    <%= link_to '編集', edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get %>
+                    <%= link_to '削除', trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete %>
+                  <% end %>
+                </div>
               <% end %>
             <% end %>
           </div>

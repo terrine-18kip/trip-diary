@@ -1,9 +1,54 @@
 <%= render "shared/header" %>
 
-<div class='form-header'>
-  <h1 class='form-header-text'>
-    旅の編集
-  </h1>
-</div>
+<%= form_with model: @trip, class:"trip-form", local: true do |f| %>
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        旅の編集
+      </h1>
+    </div>
 
-<%= render partial: "form", locals: { trip: @trip } %>
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">旅のタイトル</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_field :title, class:"input-default", id:"title", placeholder:"", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">開始日</label>
+      </div>
+      <%= f.date_field :start_date, class:"input-default" %>
+    </div>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">終了日</label>
+      </div>
+      <%= f.date_field :end_date, class:"input-default" %>
+    </div>
+
+    <div class="form-group ">
+      <div class='form-text-wrap'>
+        <label class="form-text">メモ</label>
+      </div>
+      <%= f.text_area :memo, class:"input-default input-area", id:"memo", placeholder:"" %>
+    </div>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">友達を追加する</label>
+      </div>
+      <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
+      <input name="trip[user_ids][]" placeholder="IDを入力して下さい", class="input-default" >
+    </div>
+
+    <div class='register-btn'>
+      <%= f.submit "完了" ,class:"register-red-btn" %>
+    </div>
+  </div>
+<% end %>
