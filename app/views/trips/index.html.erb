@@ -6,34 +6,7 @@
 <div class="main">
 
   <div class="trip-lists">
-    <% if @trips != nil %>
-      <% @trips.each do |trip| %>
-        <%= link_to trip_path(trip.id), class:"trip-list" do %>
-          <div class="trip-image">
-          </div>
-          <div class="trip-title">
-            <%= trip.title %>
-          </div>
-          <div class="trip-date">
-            <%= trip.start_date %>〜
-            <%= trip.end_date %>
-          </div>
-          <div class="trip-members">
-            <% trip.users.each do |user| %>
-              <div class="trip-member">
-                <% if user.image.attached? %>
-                  <%= image_tag user.image, class:"user-image-small" %>
-                <% end %>
-                <%= user.name %>
-              </div>
-            <% end %>
-          </div>
-          <div class="trip-memo">
-            <%= trip.memo %>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render "trip_list" %>
   </div>
 
 </div>

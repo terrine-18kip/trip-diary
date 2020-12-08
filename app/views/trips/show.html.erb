@@ -16,7 +16,17 @@
 
     <div class="show-trip-list">
       <div class="show-trip-left">期間</div>
-      <div class="show-trip-right"><%= @trip.start_date %>〜<%= @trip.end_date %></div>
+      <div class="show-trip-right">
+        <% if @trip.start_date && @trip.end_date %>
+          <%= l @trip.start_date %> 〜 <%= l @trip.end_date %>
+        <% elsif @trip.start_date && !@trip.end_date %>
+          <%= l @trip.start_date %> 〜
+        <% elsif !@trip.start_date && @trip.end_date %>
+          〜 <%= l @trip.end_date %>
+        <% else %>
+          未定
+        <% end %>
+      </div>
     </div>
 
     <div class="show-trip-list">
@@ -48,7 +58,7 @@
           <h2><%= "#{plan.daily}日目" %></h2>
           <div>
             <% if plan.trip.start_date %>
-              <%= plan.trip.start_date + plan.daily - 1 %>
+              <%= l plan.trip.start_date + plan.daily - 1 %>
             <% end %>
           </div>
           <div class="show-plan-destroy">
@@ -64,10 +74,14 @@
               <% plan.spots.each do |spot| %>
                 <%= spot.name %>
                 <%= spot.category.name %>
-                <%= spot.start_time %>
-                <%= spot.end_time %>
-                <%= spot.fee %>
-                <%= spot.link %>
+                <% if spot.start_time %>
+                  <%= l spot.start_time %>
+                <% end %>
+                <% if spot.end_time %>
+                  <%= l spot.end_time %>
+                <% end %>
+                <%= "#{spot.fee}円" %>
+                <%= link_to spot.link, spot.link, target: :_blank %>
                 <%= spot.memo %>
                 <% if editor_user? %>
                   <%= link_to '編集', edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get %>
