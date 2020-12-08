@@ -90,3 +90,30 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+.trip-form {
+  width: 100%;
+  min-width: 800px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.input-area {
+  height: 120px !important;
+}
+
+.add-member {
+  background-color: #ccc;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
