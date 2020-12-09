@@ -51,54 +51,149 @@
     </div>
   </div>
 
-  <div>
+  <div class="show-plans">
     <% if @plans %>
       <% @plans.each do |plan| %>
         <div class="show-plan">
-          <h2><%= "#{plan.daily}日目" %></h2>
-          <div>
-            <% if plan.trip.start_date %>
-              <%= l plan.trip.start_date + plan.daily - 1 %>
-            <% end %>
-          </div>
-          <div class="show-plan-destroy">
-            <% if editor_user? %>
-              <%= link_to '削除', trip_plan_path(@trip.id, plan.id), method: :delete %>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="show-spot">
-          <div class="show-spot-list">
-            <% if plan.spots %>
-              <% plan.spots.each do |spot| %>
-                <div>
-                  <%= spot.name %>
-                  <%= raw spot.category.icon %>
-                  <% if spot.start_time %>
-                    <%= l spot.start_time %>
-                  <% end %>
-                  <% if spot.end_time %>
-                    <%= l spot.end_time %>
-                  <% end %>
-                  <%= "#{spot.fee}円" %>
-                  <%= link_to spot.link, spot.link, target: :_blank %>
-                  <%= spot.memo %>
-                  <% if editor_user? %>
-                    <%= link_to '編集', edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get %>
-                    <%= link_to '削除', trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete %>
-                  <% end %>
-                </div>
+          <div class="show-plan-list">
+            <h2><%= "#{plan.daily}日目" %></h2>
+            <div>
+              <% if plan.trip.start_date %>
+                <%= l plan.trip.start_date + plan.daily - 1 %>
               <% end %>
-            <% end %>
+            </div>
+            <div class="show-plan-destroy">
+              <% if editor_user? %>
+                <%= link_to '削除', trip_plan_path(@trip.id, plan.id), method: :delete %>
+              <% end %>
+            </div>
           </div>
-          <div class="show-spot-new">
-            <% if editor_user? %>
-              <%= link_to 'スケジュール追加', new_trip_plan_spot_path(@trip.id, plan.id) %>
-            <% end %>
+
+          <div class="show-spots">
+            <div class="show-spots-list">
+              <% if plan.spots %>
+                <% plan.spots.each do |spot| %>
+
+                  <% if spot.category_id <= 5 %>
+                    <div class="show-spot">
+                      <div class="show-spot-time">
+                        <div class="show-spot-start-time">
+                          <% if spot.start_time %><%= l spot.start_time %><% end %>
+                        </div>
+                        <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                        <div class="show-spot-end-time">
+                          <% if spot.end_time %><%= l spot.end_time %><% end %>
+                        </div>
+                      </div>
+
+                      <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                      <div class="show-spot-main">
+                        <div><%= spot.name %></div>
+                      </div>
+                      
+                      <div class="show-spot-fee">
+                        <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                      </div>
+
+                      <div class="show-spot-editor">
+                        <% if editor_user? %>
+                          <div class="show-spot-edit">
+                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
+                              <i class="fas fa-edit"></i>
+                            <% end %>
+                          </div>
+                          <div class="show-spot-delete">
+                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                              <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+
+                  <% elsif spot.category_id <= 12 %>
+                    <div class="show-spot">
+                      <div class="show-spot-time">
+                        <div class="show-spot-start-time">
+                          <% if spot.start_time %><%= l spot.start_time %><% end %>
+                        </div>
+                        <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                        <div class="show-spot-end-time">
+                          <% if spot.end_time %><%= l spot.end_time %><% end %>
+                        </div>
+                      </div>
+
+                      <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                      <div class="show-spot-main">
+                        <div><%= spot.name %></div>
+                      </div>
+                      
+                      <div class="show-spot-fee">
+                        <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                      </div>
+
+                      <div class="show-spot-editor">
+                        <% if editor_user? %>
+                          <div class="show-spot-edit">
+                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
+                              <i class="fas fa-edit"></i>
+                            <% end %>
+                          </div>
+                          <div class="show-spot-delete">
+                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                              <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+
+                  <% else %>
+                    <div class="show-spot">
+                      <div class="show-spot-time">
+                        <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
+                      </div>
+
+                      <div class="show-spot-category"></div>
+
+                      <div class="show-spot-main">
+                        <div><%= spot.name %></div>
+                      </div>
+                      
+                      <div class="show-spot-fee">
+                        <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                      </div>
+
+                      <div class="show-spot-editor">
+                        <% if editor_user? %>
+                          <div class="show-spot-edit">
+                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
+                              <i class="fas fa-edit"></i>
+                            <% end %>
+                          </div>
+                          <div class="show-spot-delete">
+                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                              <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="show-spot-new">
+              <% if editor_user? %>
+                <%= link_to 'スケジュール追加', new_trip_plan_spot_path(@trip.id, plan.id) %>
+              <% end %>
+            </div>
           </div>
         </div>
-
       <% end %>
     <% end %>
   </div>
