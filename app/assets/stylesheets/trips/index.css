@@ -49,3 +49,21 @@ a {
   padding: 8px;
   font-size: smaller;
 }
+
+@media (max-width: 960px) {
+  * {
+    font-size: 97%;
+  }
+  .trip-list {
+    width: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  * {
+    font-size: 94%;
+  }
+  .trip-list {
+    width: 98%;
+  }
+}
