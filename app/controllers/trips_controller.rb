@@ -26,6 +26,7 @@ class TripsController < ApplicationController
   def show
     @plan = Plan.new
     @plans = @trip.plans.all
+    @total = Spot.sum_fee(@plans)
   end
 
   def edit

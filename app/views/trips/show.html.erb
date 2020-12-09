@@ -46,6 +46,13 @@
     </div>
 
     <div class="show-trip-list">
+      <div class="show-trip-left">合計金額</div>
+      <div class="show-trip-right">
+        <% if @total != nil %><%= @total %>円<% end %>
+      </div>
+    </div>
+
+    <div class="show-trip-list">
       <div class="show-trip-left">メモ</div>
       <div class="show-trip-right"><%= @trip.memo %></div>
     </div>
@@ -60,6 +67,11 @@
             <div>
               <% if plan.trip.start_date %>
                 <%= l plan.trip.start_date + plan.daily - 1 %>
+              <% end %>
+            </div>
+            <div>
+              <% if plan.spots.sum(:fee) != nil %>
+                合計：<%= plan.spots.sum(:fee) %>円
               <% end %>
             </div>
             <div class="show-plan-destroy">

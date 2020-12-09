@@ -7,4 +7,12 @@ class Spot < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
+
+  def self.sum_fee(plans)
+    fee = 0
+    plans.each do |plan|
+      fee += plan.spots.sum(:fee)
+    end
+    fee
+  end
 end
