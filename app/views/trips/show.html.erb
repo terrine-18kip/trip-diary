@@ -82,12 +82,12 @@
           </div>
 
           <div class="show-spots">
-            <div class="show-spots-list">
+            <ul class="show-spots-list">
               <% if plan.spots %>
                 <% plan.spots.each do |spot| %>
 
                   <% if spot.category_id <= 5 %>
-                    <div class="show-spot">
+                    <li class="show-spot">
                       <div class="show-spot-time">
                         <div class="show-spot-start-time">
                           <% if spot.start_time %><%= l spot.start_time %><% end %>
@@ -122,10 +122,10 @@
                           </div>
                         <% end %>
                       </div>
-                    </div>
+                    </li>
 
                   <% elsif spot.category_id <= 12 %>
-                    <div class="show-spot">
+                    <li class="show-spot">
                       <div class="show-spot-time">
                         <div class="show-spot-start-time">
                           <% if spot.start_time %><%= l spot.start_time %><% end %>
@@ -160,10 +160,10 @@
                           </div>
                         <% end %>
                       </div>
-                    </div>
+                    </li>
 
                   <% else %>
-                    <div class="show-spot">
+                    <li class="show-spot">
                       <div class="show-spot-time">
                         <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
                       </div>
@@ -192,12 +192,12 @@
                           </div>
                         <% end %>
                       </div>
-                    </div>
+                    </li>
                   <% end %>
 
                 <% end %>
               <% end %>
-            </div>
+            </ul>
 
             <div class="show-spot-new">
               <% if editor_user? %>
