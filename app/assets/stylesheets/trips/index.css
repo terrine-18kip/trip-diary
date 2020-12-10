@@ -9,13 +9,16 @@ a {
   object-position: 50% 70%;
 }
 
-.trip-lists {
+.main {
   max-width: 1280px;
   width: 96vw;
+  margin: 0 auto;
+}
+
+.trip-lists {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 0 auto;
+  justify-content: flex-start;
 }
 
 .trip-list {
@@ -45,4 +48,22 @@ a {
 .trip-member {
   padding: 8px;
   font-size: smaller;
+}
+
+@media (max-width: 960px) {
+  * {
+    font-size: 97%;
+  }
+  .trip-list {
+    width: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  * {
+    font-size: 94%;
+  }
+  .trip-list {
+    width: 98%;
+  }
 }

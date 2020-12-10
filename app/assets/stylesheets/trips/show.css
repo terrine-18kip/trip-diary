@@ -45,7 +45,7 @@
 }
 
 
-.show-plan {
+.show-plan-list {
   height: 3em;
   display: flex;
   justify-content: space-around;
@@ -53,11 +53,75 @@
   background-color: #f9f9f9;
 }
 
-
-.show-spot {
+.show-spots {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-bottom: 3em;
+}
+
+.show-spots-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.show-spot {
+  width: 100%;
+  padding: 0.5em 3%;
+  border-bottom: .5px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.show-spot-time {
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-spot-start-time {
+  height: 1.2em;
+  line-height: 1.2;
+}
+
+.show-spot-end-time {
+  height: 1.2em;
+  line-height: 1.2;
+}
+
+.show-spot-category {
+  width: 50px;
+  text-align: center;
+  color: #555;
+}
+
+
+.show-spot-main {
+  width: calc(95% - 280px);
+  font-size: larger;
+  font-weight: 500;
+}
+
+
+.show-spot-fee {
+  width: 100px;
+  text-align: right;
+}
+
+.show-spot-editor {
+  width: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.show-spot-new {
+  padding: 10px;
 }

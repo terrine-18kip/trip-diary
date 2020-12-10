@@ -1,6 +1,7 @@
 a {
   color: dimgrey;
   font-weight: 500;
+  text-decoration: none;
 }
 
 .top-page-header {
@@ -17,19 +18,19 @@ a {
   align-items: center;
 }
 
-li {
+.header-list-right li {
   padding: 0 10px;
   display: flex;
 }
 
-li>a {
-  text-decoration: none;
-
+.header-user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .header-user-name {
-  display: inline-block;
-  vertical-align: middle;
+  padding-right: .5em;
 }
 
 .header-user-image {
@@ -38,4 +39,43 @@ li>a {
   object-fit: cover;
   border-radius: 50%;
   vertical-align: middle;
+}
+
+.user-info-list {
+  position: absolute;
+  width: 150px;
+  top: 80px;
+  right: 10px;
+  background-color: #ccc;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .top-page-header {
+    padding: 5px 8px;
+  }
+  .header-left {
+    width: 37vw;
+  }
+  .title-logo {
+    width: 37vw;
+    height: auto;
+  }
+  .header-list-right li {
+    padding: 0 5px;
+    display: flex;
+  }
+  .header-user-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  .user-info-list {
+    top: 60px;
+  }
 }

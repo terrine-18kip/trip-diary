@@ -1,0 +1,35 @@
+    <% if @trips != nil %>
+      <% @trips.each do |trip| %>
+        <%= link_to trip_path(trip.id), class:"trip-list" do %>
+          <div class="trip-image">
+          </div>
+          <div class="trip-title">
+            <%= trip.title %>
+          </div>
+          <div class="trip-date">
+             <% if trip.start_date && trip.end_date %>
+              <%= l trip.start_date %> 〜 <%= l trip.end_date %>
+            <% elsif trip.start_date && !trip.end_date %>
+              <%= l trip.start_date %> 〜
+            <% elsif !trip.start_date && trip.end_date %>
+              〜 <%= l trip.end_date %>
+            <% else %>
+              未定
+            <% end %>
+          </div>
+          <div class="trip-members">
+            <% trip.users.each do |user| %>
+              <div class="trip-member">
+                <% if user.image.attached? %>
+                  <%= image_tag user.image, class:"user-image-small" %>
+                <% end %>
+                <%= user.name %>
+              </div>
+            <% end %>
+          </div>
+          <div class="trip-memo">
+            <%= trip.memo %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
