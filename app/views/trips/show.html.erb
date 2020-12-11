@@ -82,117 +82,119 @@
           </div>
 
           <div class="show-spots">
-            <ul class="show-spots-list">
+            <ul class="show-spots-list", id="sort-list">
               <% if plan.spots %>
-                <% plan.spots.each do |spot| %>
+                <% @spots.each do |spot| %>
 
-                  <% if spot.category_id <= 5 %>
-                    <li class="show-spot">
-                      <div class="show-spot-time">
-                        <div class="show-spot-start-time">
-                          <% if spot.start_time %><%= l spot.start_time %><% end %>
+                  <% if spot.plan_id == plan.id %>
+                    <% if spot.category_id <= 5 %>
+                      <li class="show-spot">
+                        <div class="show-spot-time">
+                          <div class="show-spot-start-time">
+                            <% if spot.start_time %><%= l spot.start_time %><% end %>
+                          </div>
+                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                          <div class="show-spot-end-time">
+                            <% if spot.end_time %><%= l spot.end_time %><% end %>
+                          </div>
                         </div>
-                        <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
-                        <div class="show-spot-end-time">
-                          <% if spot.end_time %><%= l spot.end_time %><% end %>
+
+                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                        <div class="show-spot-main">
+                          <div><%= spot.name %></div>
                         </div>
-                      </div>
-
-                      <div class="show-spot-category"><%= raw spot.category.icon %></div>
-
-                      <div class="show-spot-main">
-                        <div><%= spot.name %></div>
-                      </div>
-                      
-                      <div class="show-spot-fee">
-                        <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                      </div>
-
-                      <div class="show-spot-editor">
-                        <% if editor_user? %>
-                          <div class="show-spot-edit">
-                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
-                              <i class="fas fa-edit"></i>
-                            <% end %>
-                          </div>
-                          <div class="show-spot-delete">
-                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
-                              <i class="fas fa-trash-alt"></i>
-                            <% end %>
-                          </div>
-                        <% end %>
-                      </div>
-                    </li>
-
-                  <% elsif spot.category_id <= 12 %>
-                    <li class="show-spot">
-                      <div class="show-spot-time">
-                        <div class="show-spot-start-time">
-                          <% if spot.start_time %><%= l spot.start_time %><% end %>
+                        
+                        <div class="show-spot-fee">
+                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
                         </div>
-                        <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
-                        <div class="show-spot-end-time">
-                          <% if spot.end_time %><%= l spot.end_time %><% end %>
+
+                        <div class="show-spot-editor">
+                          <% if editor_user? %>
+                            <div class="show-spot-edit">
+                              <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
+                                <i class="fas fa-edit"></i>
+                              <% end %>
+                            </div>
+                            <div class="show-spot-delete">
+                              <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                                <i class="fas fa-trash-alt"></i>
+                              <% end %>
+                            </div>
+                          <% end %>
                         </div>
-                      </div>
+                      </li>
 
-                      <div class="show-spot-category"><%= raw spot.category.icon %></div>
-
-                      <div class="show-spot-main">
-                        <div><%= spot.name %></div>
-                      </div>
-                      
-                      <div class="show-spot-fee">
-                        <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                      </div>
-
-                      <div class="show-spot-editor">
-                        <% if editor_user? %>
-                          <div class="show-spot-edit">
-                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
-                              <i class="fas fa-edit"></i>
-                            <% end %>
+                    <% elsif spot.category_id <= 12 %>
+                      <li class="show-spot">
+                        <div class="show-spot-time">
+                          <div class="show-spot-start-time">
+                            <% if spot.start_time %><%= l spot.start_time %><% end %>
                           </div>
-                          <div class="show-spot-delete">
-                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
-                              <i class="fas fa-trash-alt"></i>
-                            <% end %>
+                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                          <div class="show-spot-end-time">
+                            <% if spot.end_time %><%= l spot.end_time %><% end %>
                           </div>
-                        <% end %>
-                      </div>
-                    </li>
+                        </div>
 
-                  <% else %>
-                    <li class="show-spot">
-                      <div class="show-spot-time">
-                        <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
-                      </div>
+                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
 
-                      <div class="show-spot-category"></div>
+                        <div class="show-spot-main">
+                          <div><%= spot.name %></div>
+                        </div>
+                        
+                        <div class="show-spot-fee">
+                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                        </div>
 
-                      <div class="show-spot-main">
-                        <div><%= spot.name %></div>
-                      </div>
-                      
-                      <div class="show-spot-fee">
-                        <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                      </div>
+                        <div class="show-spot-editor">
+                          <% if editor_user? %>
+                            <div class="show-spot-edit">
+                              <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
+                                <i class="fas fa-edit"></i>
+                              <% end %>
+                            </div>
+                            <div class="show-spot-delete">
+                              <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                                <i class="fas fa-trash-alt"></i>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </li>
 
-                      <div class="show-spot-editor">
-                        <% if editor_user? %>
-                          <div class="show-spot-edit">
-                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
-                              <i class="fas fa-edit"></i>
-                            <% end %>
-                          </div>
-                          <div class="show-spot-delete">
-                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
-                              <i class="fas fa-trash-alt"></i>
-                            <% end %>
-                          </div>
-                        <% end %>
-                      </div>
-                    </li>
+                    <% else %>
+                      <li class="show-spot">
+                        <div class="show-spot-time">
+                          <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
+                        </div>
+
+                        <div class="show-spot-category"></div>
+
+                        <div class="show-spot-main">
+                          <div><%= spot.name %></div>
+                        </div>
+                        
+                        <div class="show-spot-fee">
+                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                        </div>
+
+                        <div class="show-spot-editor">
+                          <% if editor_user? %>
+                            <div class="show-spot-edit">
+                              <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :get do %>
+                                <i class="fas fa-edit"></i>
+                              <% end %>
+                            </div>
+                            <div class="show-spot-delete">
+                              <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                                <i class="fas fa-trash-alt"></i>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </li>
+                    <% end %>
                   <% end %>
 
                 <% end %>
