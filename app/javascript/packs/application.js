@@ -17,3 +17,8 @@ require('jquery')
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+//= require jquery3
+//= require rails-ujs
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/effects/effect-highlight

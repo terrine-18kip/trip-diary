@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :trips do
     resources :plans, only: [:create, :destroy] do
-      resources :spots, only: [:new, :create, :edit, :update, :destroy]
+      resources :spots, only: [:new, :create, :edit, :update, :destroy] do
+        put :sort
+      end
     end
   end
 end
