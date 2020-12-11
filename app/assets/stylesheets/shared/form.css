@@ -4,6 +4,11 @@
   margin: 5vh auto !important;
 }
 
+.modal-dialog-plan {
+  margin: 36vh auto !important;
+  max-width: 300px !important;
+}
+
 .registration-main {
   width: 100%;
   height: 100%;
@@ -15,6 +20,12 @@
   width: 100%;
   background-color: white;
   padding-bottom: 70px;
+}
+
+.form-wrap-plan {
+  width: 100%;
+  background-color: white;
+  padding: 30px;
 }
 
 .form-header {
