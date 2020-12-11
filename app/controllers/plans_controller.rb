@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :update, :destroy]
-  
+
   def create
     plan = Plan.create(plan_params)
     redirect_to edit_trip_path(plan.trip.id)
