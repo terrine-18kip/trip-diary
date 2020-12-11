@@ -58,12 +58,12 @@
 
   <div id="spot-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
-  <div class="show-plans">
+  <div class="show-plans" id="sort-list">
     <% if @plans %>
       <% @plans.each do |plan| %>
         <div class="show-plan">
           <div class="show-plan-list">
-            <h2><%= "#{plan.daily}日目" %></h2>
+            <%= link_to "#{plan.daily}日目", edit_trip_plan_path(@trip.id, plan.id), remote: true %>
             <div>
               <% if plan.trip.start_date %>
                 <%= l plan.trip.start_date + plan.daily - 1 %>

@@ -55,7 +55,7 @@ class TripsController < ApplicationController
 
   def set_plans
     @plan = Plan.new
-    @plans = @trip.plans.all
+    @plans = @trip.plans.all.order(:daily)
     @spots = @trip.spots.all.order(:row_order)
     @total = Spot.sum_fee(@plans)
   end
