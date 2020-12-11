@@ -1,0 +1,10 @@
+<div class="modal-dialog modal-dialog-plan" role="document">
+  <div class="modal-content">
+    <%= form_with(model: [@trip, @plan], class:"trip-form", local: true) do |f| %>
+      <div class='form-wrap-plan'>
+        <%= f.number_field :daily, class:"input-default" %>日目 
+        <%= f.submit '更新' %>
+      </div>
+    <% end %>
+  </div>
+</div>

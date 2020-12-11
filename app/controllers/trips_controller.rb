@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_plans, only: [:show, :edit]
   before_action :move_to_index, only: [:edit, :destroy]
   before_action :create_user_valid?, only: :create
   before_action :update_user_valid?, only: :update
@@ -24,9 +25,6 @@ class TripsController < ApplicationController
   end
 
   def show
-    @plan = Plan.new
-    @plans = @trip.plans.all
-    @total = Spot.sum_fee(@plans)
   end
 
   def edit
@@ -53,6 +51,13 @@ class TripsController < ApplicationController
 
   def set_trip
     @trip = Trip.find(params[:id])
+  end
+
+  def set_plans
+    @plan = Plan.new
+    @plans = @trip.plans.all.order(:daily)
+    @spots = @trip.spots.all.order(:row_order)
+    @total = Spot.sum_fee(@plans)
   end
 
   def trip_params

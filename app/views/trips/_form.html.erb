@@ -1,54 +1,47 @@
-<%= form_with model: @trip, class:"trip-form", local: true do |f| %>
-  <div class='form-wrap'>
-    <div class='form-header'>
-      <h1 class='form-header-text'>
-        旅の編集
-      </h1>
-    </div>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <%= form_with model: @trip, class:"trip-form", local: true do |f| %>
+      <div class='form-wrap'>
+        <div class='form-header'>
+          <h1 class='form-header-text'>
+            旅の編集
+          </h1>
+        </div>
 
-    <%= render 'shared/error_messages', model: f.object %>
+        <%= render 'shared/error_messages', model: f.object %>
 
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">旅のタイトル</label>
-        <span class="indispensable">必須</span>
+        <div class="form-group">
+          <div class="form-text">タイトル</div>
+          <%= f.text_field :title, class:"input-default", id:"title", placeholder:"*必須", autofocus: true %>
+        </div>
+
+          <div class="form-group">
+            <div class="form-text">期間</div>
+            <div class="form-group-date">
+              <%= f.date_field :start_date, class:"input-date" %>
+              <div>〜</div>
+              <%= f.date_field :end_date, class:"input-date" %>
+            </div>
+          </div>
+
+        <div class="form-group ">
+          <div class="form-text">メモ</div>
+          <%= f.text_area :memo, class:"input-default input-area", id:"memo" %>
+        </div>
+
+        <div class="form-group">
+          
+          <div class="form-text">友達を追加</div>
+          <div id="input-member">
+            <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
+          </div>
+          <div id="add-member", class="add-member">＋</div>
+        </div>
+
+        <div class='register-btn'>
+          <%= f.submit "完了" ,class:"register-red-btn" %>
+        </div>
       </div>
-      <%= f.text_field :title, class:"input-default", id:"title", placeholder:"", autofocus: true %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">開始日</label>
-      </div>
-      <%= f.date_field :start_date, class:"input-default" %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">終了日</label>
-      </div>
-      <%= f.date_field :end_date, class:"input-default" %>
-    </div>
-
-    <div class="form-group ">
-      <div class='form-text-wrap'>
-        <label class="form-text">メモ</label>
-      </div>
-      <%= f.text_area :memo, class:"input-default input-area", id:"memo", placeholder:"" %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">友達を追加する</label>
-      </div>
-      <div id="input-member">
-        <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
-      </div>
-      <div id="add-member", class="add-member">＋</div>
-    </div>
-
-    <div class='register-btn'>
-      <%= f.submit "完了" ,class:"register-red-btn" %>
-    </div>
+    <% end %>
   </div>
-<% end %>
+</div>

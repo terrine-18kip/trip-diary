@@ -1,3 +1,212 @@
 <%= render "shared/header" %>
 
-<%= render "form" %>
+<div class="show-main">
+
+  <div class="show-trip">
+
+    <div class="show-trip-head">
+      <h1 class="show-trip-title"><%= @trip.title %></h1>
+      <div class="show-trip-edit">
+        <%= link_to '編集する', edit_trip_path(@trip.id), remote: true, method: :get %>
+        <%= link_to '削除する', trip_path(@trip.id), method: :delete %>
+      </div>
+    </div>
+
+    <div class="show-trip-list">
+      <div class="show-trip-left">期間</div>
+      <div class="show-trip-right">
+        <% if @trip.start_date && @trip.end_date %>
+          <%= l @trip.start_date %> 〜 <%= l @trip.end_date %>
+        <% elsif @trip.start_date && !@trip.end_date %>
+          <%= l @trip.start_date %> 〜
+        <% elsif !@trip.start_date && @trip.end_date %>
+          〜 <%= l @trip.end_date %>
+        <% else %>
+          未定
+        <% end %>
+      </div>
+    </div>
+
+    <div class="show-trip-list">
+      <div class="show-trip-left">メンバー</div>
+      <div class="show-trip-right">
+        <% @trip.users.each do |user| %>
+          <div class="trip-member">
+            <%= link_to user_path(user.id) do %>
+              <% if user.image.attached? %>
+                <%= image_tag user.image, class:"user-image-small" %>
+              <% end %>
+              <%= user.name %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="show-trip-list">
+      <div class="show-trip-left">合計金額</div>
+      <div class="show-trip-right">
+        <% if @total != nil %><%= @total %>円<% end %>
+      </div>
+    </div>
+
+    <div class="show-trip-list">
+      <div class="show-trip-left">メモ</div>
+      <div class="show-trip-right"><%= @trip.memo %></div>
+    </div>
+  </div>
+
+  <div id="spot-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+  <div class="show-plans" id="sort-list">
+    <% if @plans %>
+      <% @plans.each do |plan| %>
+        <div class="show-plan">
+          <div class="show-plan-list">
+            <%= link_to "#{plan.daily}日目", edit_trip_plan_path(@trip.id, plan.id), remote: true %>
+            <div>
+              <% if plan.trip.start_date %>
+                <%= l plan.trip.start_date + plan.daily - 1 %>
+              <% end %>
+            </div>
+            <div>
+              <% if plan.spots.sum(:fee) != nil %>
+                合計：<%= plan.spots.sum(:fee) %>円
+              <% end %>
+            </div>
+            <div class="show-plan-destroy">
+              <%= link_to '削除', trip_plan_path(@trip.id, plan.id), method: :delete %>
+            </div>
+          </div>
+
+          <div class="show-spots">
+            <ul class="show-spots-list">
+              <% if plan.spots %>
+                <% @spots.each do |spot| %>
+
+                  <% if spot.plan_id == plan.id %>
+                    <% if spot.category_id <= 5 %>
+                      <li class="show-spot">
+                        <div class="show-spot-time">
+                          <div class="show-spot-start-time">
+                            <% if spot.start_time %><%= l spot.start_time %><% end %>
+                          </div>
+                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                          <div class="show-spot-end-time">
+                            <% if spot.end_time %><%= l spot.end_time %><% end %>
+                          </div>
+                        </div>
+
+                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                        <div class="show-spot-main">
+                          <div><%= spot.name %></div>
+                        </div>
+                        
+                        <div class="show-spot-fee">
+                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                        </div>
+
+                        <div class="show-spot-editor">
+                          <div class="show-spot-edit">
+                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
+                              <i class="fas fa-edit"></i>
+                            <% end %>
+                          </div>
+                          <div class="show-spot-delete">
+                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                              <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                      </li>
+
+                    <% elsif spot.category_id <= 12 %>
+                      <li class="show-spot">
+                        <div class="show-spot-time">
+                          <div class="show-spot-start-time">
+                            <% if spot.start_time %><%= l spot.start_time %><% end %>
+                          </div>
+                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                          <div class="show-spot-end-time">
+                            <% if spot.end_time %><%= l spot.end_time %><% end %>
+                          </div>
+                        </div>
+
+                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                        <div class="show-spot-main">
+                          <div><%= spot.name %></div>
+                        </div>
+                        
+                        <div class="show-spot-fee">
+                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                        </div>
+
+                        <div class="show-spot-editor">
+                          <div class="show-spot-edit">
+                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
+                              <i class="fas fa-edit"></i>
+                            <% end %>
+                          </div>
+                          <div class="show-spot-delete">
+                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                              <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                      </li>
+
+                    <% else %>
+                      <li class="show-spot">
+                        <div class="show-spot-time">
+                          <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
+                        </div>
+
+                        <div class="show-spot-category"></div>
+
+                        <div class="show-spot-main">
+                          <div><%= spot.name %></div>
+                        </div>
+                        
+                        <div class="show-spot-fee">
+                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                        </div>
+
+                        <div class="show-spot-editor">
+                          <div class="show-spot-edit">
+                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
+                              <i class="fas fa-edit"></i>
+                            <% end %>
+                          </div>
+                          <div class="show-spot-delete">
+                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                              <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                      </li>
+                    <% end %>
+                  <% end %>
+
+                <% end %>
+              <% end %>
+            </ul>
+
+            <div class="show-spot-new">
+              <%= link_to 'スケジュール追加', new_trip_plan_spot_path(@trip.id, plan.id), remote: true %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form_with(model: [@trip, @plan], local: true) do |f1| %>
+      <%= f1.number_field :daily %>日目 
+      <%= f1.submit '追加' %>
+    <% end %>
+  </div>
+
+</div>

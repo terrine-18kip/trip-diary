@@ -4,6 +4,7 @@ class Spot < ApplicationRecord
   validates :fee,         allow_blank: true, numericality: { only_integer: true }
 
   belongs_to :plan
+  belongs_to :trip
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
