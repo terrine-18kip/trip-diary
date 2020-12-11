@@ -1,13 +1,18 @@
+.modal-dialog {
+  width: 90vw !important;
+  max-width: 800px !important;
+  margin: 5vh auto !important;
+}
+
 .registration-main {
   width: 100%;
-  min-width: 800px;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
 .form-wrap {
-  width: 60%;
+  width: 100%;
   background-color: white;
   padding-bottom: 70px;
 }
@@ -26,11 +31,17 @@
 }
 
 .form-group {
-  width: 50%;
+  width: 90%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   margin: 0 auto;
-  padding-top: 12px;
+}
+
+.form-group-date {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 6em);
 }
 
 .form-text-wrap {
@@ -39,10 +50,19 @@
 }
 
 .form-text {
+  width: 6em !important;
   font-weight: 500;
 }
 
-.image-input-btn{
+.form-group-date {
+  width: calc(100% - 6em);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.image-input-btn {
   background-color: #f5f5f5;
   width: 150px;
   height: 150px;
@@ -65,9 +85,19 @@
 }
 
 .input-default {
+  width: calc(100% - 6em);
+  height: 2.8em;
+  padding: 4px 12px 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  resize: none;
+}
+
+.input-date {
   width: 100%;
-  margin-top: 5px;
-  height: 42px;
+  min-width: 0px;
+  height: 2.8em;
   padding: 4px 12px 4px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -78,7 +108,7 @@
 .register-btn {
   width: 50%;
   margin: 0 auto;
-  padding-top: 42px;
+  padding-top: 2.8em;
 }
 
 .register-red-btn {
@@ -93,7 +123,6 @@
 
 .trip-form {
   width: 100%;
-  min-width: 800px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -116,4 +145,11 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .form-group-date {
+    display: flex;
+    flex-direction: column;
+  }
 }

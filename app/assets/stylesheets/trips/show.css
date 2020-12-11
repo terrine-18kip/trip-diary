@@ -42,6 +42,7 @@
 .show-trip-right {
   width: 75%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 
@@ -124,4 +125,40 @@
 
 .show-spot-new {
   padding: 10px;
+}
+
+@media (max-width: 500px) {
+  .show-main {
+    padding: 160px 10px;
+  }
+  .show-trip {
+    padding: 5px 5px 15px 5px;
+  }
+  .show-spot {
+    padding: 0.4em 1%;
+  }
+  .show-spot-time {
+    width: 40px;
+  }
+  .show-spot-category {
+    width: 20px;
+  }
+  .show-spot-main {
+    width: calc(98% - 150px);
+    font-size: larger;
+    font-weight: 500;
+  }
+  .show-spot-fee {
+    width: 50px;
+    text-align: right;
+  }
+  .show-spot-editor {
+    width: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .show-spot-new {
+    padding: 0;
+  }
 }

@@ -60,11 +60,14 @@ a {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   * {
     font-size: 94%;
   }
   .trip-list {
     width: 98%;
+  }
+  .trip-member {
+    padding: 4px;
   }
 }
