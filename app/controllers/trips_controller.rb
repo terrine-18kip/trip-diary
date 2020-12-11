@@ -33,6 +33,7 @@ class TripsController < ApplicationController
   def edit
     @plan = Plan.new
     @plans = @trip.plans.all
+    @spots = @trip.spots.all.order(:row_order)
     @total = Spot.sum_fee(@plans)
   end
 

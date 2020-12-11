@@ -3,6 +3,8 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+window.$ = $;
+
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
@@ -18,7 +20,6 @@ require('jquery')
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-//= require jquery3
-//= require rails-ujs
-//= require jquery-ui/widgets/sortable
-//= require jquery-ui/effects/effect-highlight
+import 'popper.js/dist/popper.js'
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap.css'
