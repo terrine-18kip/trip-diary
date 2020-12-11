@@ -1,66 +1,70 @@
-<%= form_with model: [@trip, @plan, @spot], class:"trip-form", local: true do |f| %>
-  <div class='form-wrap'>
-    <div class='form-header'>
-      <h1 class='form-header-text'>
-        スポット追加
-      </h1>
-    </div>
-    <%= render 'shared/error_messages', model: f.object %>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <%= form_with model: [@trip, @plan, @spot], class:"trip-form", local: true do |f| %>
+      <div class='form-wrap'>
+        <div class='form-header'>
+          <h1 class='form-header-text'>
+            スポット追加
+          </h1>
+        </div>
+        <%= render 'shared/error_messages', model: f.object %>
 
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">スポット名</label>
-        <span class="indispensable">必須</span>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">スポット名</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.text_field :name, class:"input-default", id:"name", placeholder:"", autofocus: true %>
+        </div>
+
+          <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">カテゴリー</label>
+          </div>
+          <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"input-default", id:"category_id", placeholder:"", autofocus: true}) %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">開始時刻</label>
+          </div>
+          <%= f.time_field :start_time, class:"input-default", id:"start_time", placeholder:"", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">終了時刻</label>
+          </div>
+          <%= f.time_field :end_time, class:"input-default", id:"end_time", placeholder:"", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">金額</label>
+          </div>
+          <%= f.number_field :fee, class:"input-default", id:"fee", placeholder:"", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">参考リンク</label>
+          </div>
+          <%= f.text_field :link, class:"input-default", id:"link", placeholder:"", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">メモ</label>
+          </div>
+          <%= f.text_area :memo, class:"input-default input-area", id:"memo", placeholder:"" %>
+        </div>
+
+        <div class='register-btn'>
+          <%= f.submit "完了" ,class:"register-red-btn" %>
+        </div>
+
       </div>
-      <%= f.text_field :name, class:"input-default", id:"name", placeholder:"", autofocus: true %>
-    </div>
 
-      <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">カテゴリー</label>
-      </div>
-      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"input-default", id:"category_id", placeholder:"", autofocus: true}) %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">開始時刻</label>
-      </div>
-      <%= f.time_field :start_time, class:"input-default", id:"start_time", placeholder:"", autofocus: true %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">終了時刻</label>
-      </div>
-      <%= f.time_field :end_time, class:"input-default", id:"end_time", placeholder:"", autofocus: true %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">金額</label>
-      </div>
-      <%= f.number_field :fee, class:"input-default", id:"fee", placeholder:"", autofocus: true %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">参考リンク</label>
-      </div>
-      <%= f.text_field :link, class:"input-default", id:"link", placeholder:"", autofocus: true %>
-    </div>
-
-    <div class="form-group">
-      <div class='form-text-wrap'>
-        <label class="form-text">メモ</label>
-      </div>
-      <%= f.text_area :memo, class:"input-default input-area", id:"memo", placeholder:"" %>
-    </div>
-
-    <div class='register-btn'>
-      <%= f.submit "完了" ,class:"register-red-btn" %>
-    </div>
-
+    <% end %>
   </div>
-
-<% end %>
+</div>
