@@ -5,7 +5,7 @@
     </div>
     <ul class="header-list-right">
       <% if user_signed_in? %>
-        <li><%= link_to '旅の作成', new_trip_path %></li>
+        <li><%= link_to '旅の作成', new_trip_path, remote: true %></li>
         <li class="header-user-info", id="user-info">
           <div class="header-user-name">
             <%= current_user.name %>

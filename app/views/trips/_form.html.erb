@@ -30,12 +30,13 @@
         </div>
 
         <div class="form-group">
-          
           <div class="form-text">友達を追加</div>
-          <div id="input-member">
-            <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
+          <div class="form-group-member">
+            <div id="input-members", class="input-members">
+              <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
+            </div>
+            <div id="add-member", class="add-member">＋</div>
           </div>
-          <div id="add-member", class="add-member">＋</div>
         </div>
 
         <div class='register-btn'>
@@ -43,5 +44,17 @@
         </div>
       </div>
     <% end %>
+    <script type="text/javascript">
+      $(function () {
+        const InputMember = document.getElementById('input-members');
+        document.getElementById('add-member').addEventListener('click', function(e){
+          const inputElement = document.createElement('input');
+          inputElement.setAttribute("name","trip[user_ids][]");
+          inputElement.setAttribute("placeholder","IDを入力して下さい");
+          inputElement.setAttribute("class","input-member");
+          InputMember.appendChild(inputElement);
+        });
+      });
+    </script>
   </div>
 </div>

@@ -8,7 +8,7 @@
       <p class="user-name"><%= @user.name %></p>
       <p class="user-id">ID：<%= @user.id %></p>
       <% if current_user.id == @user.id %>
-        <p><%= link_to 'ユーザー情報の編集', edit_user_path(current_user), method: :get %></p>
+        <p><%= link_to 'ユーザー情報の編集', edit_user_path(current_user), remote: true, method: :get %></p>
       <% end %>
     </div>
   </div>
@@ -16,5 +16,6 @@
   <div class="trip-lists">
     <%= render "trips/trip_list" %>
   </div>
+  <div id="spot-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
 </div>
