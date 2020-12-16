@@ -11,11 +11,17 @@ a {
   align-items: center;
   padding: 10px 20px;
   position: fixed;
+  z-index: 10;
+}
+
+.title-logo {
+  height: 4em;
 }
 
 .header-list-right {
   display: flex;
   align-items: center;
+  margin: 0;
 }
 
 .header-list-right li {
@@ -53,16 +59,9 @@ a {
   display: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .top-page-header {
     padding: 5px 8px;
-  }
-  .header-left {
-    width: 37vw;
-  }
-  .title-logo {
-    width: 37vw;
-    height: auto;
   }
   .header-list-right li {
     padding: 0 5px;
