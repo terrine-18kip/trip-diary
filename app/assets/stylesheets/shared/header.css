@@ -68,6 +68,9 @@
     padding: 0 5px;
     display: flex;
   }
+  .header-user-name {
+    display: none;
+  }  
   .header-user-image {
     width: 40px;
     height: 40px;

@@ -11,6 +11,22 @@
         <%= render 'shared/error_messages', model: f.object %>
 
         <div class="form-group">
+          <div class="form-text">画像</div>
+          <label for="form-trip-image">
+            <div class="trip-image-btn">
+              <div id="trip-image-list">
+                <div>
+                  <% if @trip.trip_image.attached? %>
+                    <%= image_tag @trip.trip_image, class:"trip-image-list" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <%= f.file_field :trip_image, class:"form-trip-image", id:"form-trip-image" %>
+          </label>
+        </div>
+
+        <div class="form-group">
           <div class="form-text">タイトル</div>
           <%= f.text_field :title, class:"input-default", id:"title", placeholder:"*必須", autofocus: true %>
         </div>
@@ -53,6 +69,33 @@
           inputElement.setAttribute("placeholder","IDを入力して下さい");
           inputElement.setAttribute("class","input-member");
           InputMember.appendChild(inputElement);
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(function () {
+        const ImageList = document.getElementById('trip-image-list');
+
+        const createImageHTML = (blob) => {
+          const imageElement = document.createElement('div');
+          const blobImage = document.createElement('img');
+          blobImage.setAttribute('src', blob);
+          blobImage.setAttribute('class', 'trip-image-list');
+          imageElement.appendChild(blobImage);
+          ImageList.appendChild(imageElement);
+        };
+
+        document.getElementById('form-trip-image').addEventListener('change', function(e){
+
+          const imageContent = document.querySelector('.trip-image-list');
+          if (imageContent){
+            imageContent.remove();
+          }
+
+          const file = e.target.files[0];
+          const blob =window.URL.createObjectURL(file);
+
+          createImageHTML(blob);
         });
       });
     </script>

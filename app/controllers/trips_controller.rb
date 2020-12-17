@@ -61,7 +61,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:title, :start_date, :end_date, :memo, user_ids: [])
+    params.require(:trip).permit(:title, :start_date, :end_date, :memo, :trip_image, user_ids: [])
   end
 
   def move_to_index

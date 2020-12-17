@@ -2,6 +2,11 @@
       <% @trips.each do |trip| %>
         <%= link_to trip_path(trip.id), class:"trip-list" do %>
           <div class="trip-image">
+            <% if trip.trip_image.attached? %>
+              <%= image_tag trip.trip_image, class:"trip-image-pic" %>
+            <% else %>
+              <%= image_tag "IMG_4812-3.jpg", class:"trip-image-pic" %>
+            <% end %>
           </div>
           <div class="trip-title">
             <%= trip.title %>

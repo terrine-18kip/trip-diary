@@ -14,7 +14,13 @@
         <div class="form-text">プロフィール画像</div>
         <label class="form-text">
           <div class="image-input-btn">
-            <div id="image-list"></div>
+            <div id="image-list">
+              <div>
+                <% if @user.image.attached? %>
+                  <%= image_tag @user.image, class:"image-list" %>
+                <% end %>
+              </div>
+            </div>
           </div>
           <%= f.file_field :image, class:"profile-image", id:"profile-image" %>
         </label>
@@ -38,5 +44,32 @@
       </div>
 
     <% end %>
+    <script type="text/javascript">
+      $(function () {
+        const ImageList = document.getElementById('image-list');
+
+        const createImageHTML = (blob) => {
+          const imageElement = document.createElement('div');
+          const blobImage = document.createElement('img');
+          blobImage.setAttribute('src', blob);
+          blobImage.setAttribute('class', 'image-list');
+          imageElement.appendChild(blobImage);
+          ImageList.appendChild(imageElement);
+        };
+
+        document.getElementById('profile-image').addEventListener('change', function(e){
+
+          const imageContent = document.querySelector('.image-list');
+          if (imageContent){
+            imageContent.remove();
+          }
+
+          const file = e.target.files[0];
+          const blob =window.URL.createObjectURL(file);
+
+          createImageHTML(blob);
+        });
+      });
+    </script>
   </div>
 </div>

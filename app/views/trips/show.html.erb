@@ -4,58 +4,68 @@
 
   <div class="show-trip">
 
-    <div class="show-trip-head">
-      <h1 class="show-trip-title"><%= @trip.title %></h1>
-      <div class="show-trip-edit">
-        <% if user_signed_in? && editor_user? %>
-          <%= link_to '編集する', edit_trip_path(@trip.id), method: :get %>
-        <% end %>
+    <div class="show-trip-content">
+      <div class="show-trip-head">
+        <h1 class="show-trip-title"><%= @trip.title %></h1>
+        <div class="show-trip-edit">
+          <% if user_signed_in? && editor_user? %>
+            <%= link_to '編集モード', edit_trip_path(@trip.id), method: :get %>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">期間</div>
-      <div class="show-trip-right">
-        <% if @trip.start_date && @trip.end_date %>
-          <%= l @trip.start_date %> 〜 <%= l @trip.end_date %>
-        <% elsif @trip.start_date && !@trip.end_date %>
-          <%= l @trip.start_date %> 〜
-        <% elsif !@trip.start_date && @trip.end_date %>
-          〜 <%= l @trip.end_date %>
-        <% else %>
-          未定
-        <% end %>
+      <div class="show-trip-list">
+        <div class="show-trip-left">期間</div>
+        <div class="show-trip-right">
+          <% if @trip.start_date && @trip.end_date %>
+            <%= l @trip.start_date %> 〜 <%= l @trip.end_date %>
+          <% elsif @trip.start_date && !@trip.end_date %>
+            <%= l @trip.start_date %> 〜
+          <% elsif !@trip.start_date && @trip.end_date %>
+            〜 <%= l @trip.end_date %>
+          <% else %>
+            未定
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">メンバー</div>
-      <div class="show-trip-right">
-        <% @trip.users.each do |user| %>
-          <div class="trip-member">
-            <%= link_to user_path(user.id) do %>
-              <% if user.image.attached? %>
-                <%= image_tag user.image, class:"user-image-small" %>
+      <div class="show-trip-list">
+        <div class="show-trip-left">メンバー</div>
+        <div class="show-trip-right">
+          <% @trip.users.each do |user| %>
+            <div class="trip-member">
+              <%= link_to user_path(user.id) do %>
+                <% if user.image.attached? %>
+                  <%= image_tag user.image, class:"user-image-small" %>
+                <% end %>
+                <%= user.name %>
               <% end %>
-              <%= user.name %>
-            <% end %>
-          </div>
-        <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="show-trip-list">
+        <div class="show-trip-left">合計金額</div>
+        <div class="show-trip-right">
+          <% if @total != nil %><%= @total %>円<% end %>
+        </div>
+      </div>
+
+      <div class="show-trip-list">
+        <div class="show-trip-left">メモ</div>
+        <div class="show-trip-right"><%= @trip.memo %></div>
       </div>
     </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">合計金額</div>
-      <div class="show-trip-right">
-        <% if @total != nil %><%= @total %>円<% end %>
-      </div>
+    <div class="show-trip-image">
+      <% if @trip.trip_image.attached? %>
+        <%= image_tag @trip.trip_image, class:"show-trip-image-pic"%>
+      <% end %>
     </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">メモ</div>
-      <div class="show-trip-right"><%= @trip.memo %></div>
-    </div>
   </div>
+
 
   <div class="show-plans">
     <% if @plans %>

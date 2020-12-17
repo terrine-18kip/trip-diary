@@ -10,41 +10,64 @@
   padding: 20px;
   margin-bottom: 3em;
   background-color: #f5f8fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
+.show-trip-content {
+  width: 60%;
+}
 .show-trip-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 4em;
 }
-
 .show-trip-title {
   font-size: larger;
   padding-left: 10%;
 }
-
 .show-trip-edit {
   padding-right: 6%;
 }
-
 .show-trip-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .show-trip-left {
-  width: 20%;
+  width: 15%;
+  min-width: 5em;
   text-align: center;
+  padding: .2em 1%;
 }
-
 .show-trip-right {
-  width: 75%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
 }
-
+.show-trip-image {
+  position: relative;
+  width: 40%;
+  margin-bottom: .5em;
+}
+.show-trip-image:before {
+  content: "";
+  display: block;
+  padding-top: 50%;
+}
+.show-trip-image-pic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+}
 
 .show-plan-list {
   height: 3em;
@@ -56,6 +79,7 @@
 }
 .show-plan-list-add {
   width: 50%;
+  min-width: 210px;
   height: 3em;
   margin: 0 auto;
   border-radius: .2em;
@@ -147,12 +171,28 @@
   padding: 10px;
 }
 
+@media (max-width: 960px) {
+  .show-main {
+    padding: 6em 20px;
+  }
+}
+@media (max-width: 590px) {
+  .show-trip-content {
+    width: 100%;
+  }
+  .show-trip-image {
+    width: 100%;
+  }
+}
 @media (max-width: 500px) {
   .show-main {
     padding: 6em 10px;
   }
   .show-trip {
-    padding: 5px 5px 15px 5px;
+    padding: 8px;
+  }
+  .show-plan-list-add {
+    height: 2.5em;
   }
   .show-spot {
     padding: 0.4em 1%;
