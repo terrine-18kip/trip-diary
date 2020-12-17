@@ -2,7 +2,7 @@
   max-width: 1080px;
   width: 96vw;
   margin: 0 auto;
-  padding: 160px 40px;
+  padding: 7em 40px;
 }
 
 
@@ -48,10 +48,24 @@
 
 .show-plan-list {
   height: 3em;
+  border-radius: .2em;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: #EFD6C3;
+}
+.show-plan-list-add {
+  width: 50%;
+  height: 3em;
+  margin: 0 auto;
+  border-radius: .2em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #EFD6C3;
+}
+.show-plan-daily {
+  font-weight: 500;
 }
 
 .show-spots {
@@ -85,42 +99,48 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #CE8D75;
 }
 
 .show-spot-start-time {
   height: 1.2em;
   line-height: 1.2;
+  font-weight: 500;
 }
 
 .show-spot-end-time {
   height: 1.2em;
   line-height: 1.2;
+  font-weight: 500;
 }
 
 .show-spot-category {
-  width: 50px;
+  width: 30px;
   text-align: center;
-  color: #555;
+  color: #CE8D75;
 }
 
 
 .show-spot-main {
-  width: calc(95% - 280px);
+  width: calc(95% - 210px);
   font-size: larger;
   font-weight: 500;
 }
 
 
 .show-spot-fee {
-  width: 100px;
+  width: 80px;
   text-align: right;
 }
 
 .show-spot-editor {
-  width: 80px;
+  width: 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.show-spot-editor a {
+  color: #777 !important;
 }
 
 .show-spot-new {
@@ -129,7 +149,7 @@
 
 @media (max-width: 500px) {
   .show-main {
-    padding: 160px 10px;
+    padding: 6em 10px;
   }
   .show-trip {
     padding: 5px 5px 15px 5px;

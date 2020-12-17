@@ -62,7 +62,7 @@
       <% @plans.each do |plan| %>
         <div class="show-plan">
           <div class="show-plan-list">
-            <h2><%= "#{plan.daily}日目" %></h2>
+            <div class="show-plan-daily"><%= "#{plan.daily}日目" %></div>
             <div>
               <% if plan.trip.start_date %>
                 <%= l plan.trip.start_date + plan.daily - 1 %>

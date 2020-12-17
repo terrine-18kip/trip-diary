@@ -1,6 +1,7 @@
 a {
-  text-decoration: none !important;
   color: #333 !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
 }
 
 .main-top-content {
@@ -16,10 +17,23 @@ a {
   display: none;
 }
 .main-top-text {
+  width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.main-top-text-l {
+  text-align: center;
+  font-weight: 700;
+  font-size: 32px;
+  color: #CE8D75;
+}
+.main-top-text-s {
+  text-align: center;
+  color: #9B7E71;
+  line-height: 0.2em;
+  margin-top: 2em;
 }
 
 .main {
@@ -78,6 +92,9 @@ a {
   .main-top-image-s {
     display: none;
   }
+  .main-top-text-l {
+    font-size: 28px;
+  }
   .trip-list {
     width: 49%;
   }
@@ -96,6 +113,9 @@ a {
   .main-top-image-s {
     display: block;
     width: 100vw;
+  }
+  .main-top-text-l {
+    font-size: 25px;
   }
   .trip-list {
     width: 98%;

@@ -2,8 +2,8 @@
   <div class="modal-content">
     <%= form_with(model: [@trip, @plan], class:"trip-form", local: true) do |f| %>
       <div class='form-wrap-plan'>
-        <%= f.number_field :daily, class:"input-default" %>日目 
-        <%= f.submit '更新' %>
+        <%= f.number_field :daily, class:"input-day" %>日目 
+        <%= f.submit '更新', class:"register-day-btn" %>
       </div>
     <% end %>
   </div>
