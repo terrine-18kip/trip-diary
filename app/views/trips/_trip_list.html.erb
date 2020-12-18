@@ -5,31 +5,31 @@
             <% if trip.trip_image.attached? %>
               <%= image_tag trip.trip_image, class:"trip-image-pic" %>
             <% elsif !trip.start_date %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default00", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 1 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default01", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 2 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default02", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 3 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default03", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 4 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default04", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 5 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default05", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 6 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default06", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 7 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default07", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 8 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default08", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 9 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default09", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 10 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default10", class:"trip-image-pic"%>
             <% elsif trip.start_date.mon == 11 %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default11", class:"trip-image-pic"%>
             <% else %>
-              <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+              <%= image_tag "default12", class:"trip-image-pic"%>
             <% end %>
           </div>
           <div class="trip-title">
