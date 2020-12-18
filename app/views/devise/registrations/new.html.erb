@@ -12,7 +12,9 @@
       <div class="form-text">プロフィール画像</div>
       <label for="profile-image">
         <div class="image-input-btn">
-          <div id="image-list"></div>
+          <div id="image-list">
+            <div><%= image_tag "default_user.png", class:"image-list" %></div>
+          </div>
         </div>
         <%= f.file_field :image, class:"profile-image", id:"profile-image" %>
       </label>

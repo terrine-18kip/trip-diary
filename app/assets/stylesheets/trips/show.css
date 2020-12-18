@@ -55,7 +55,7 @@
 .show-trip-image:before {
   content: "";
   display: block;
-  padding-top: 50%;
+  padding-top: 56.25%;
 }
 .show-trip-image-pic {
   position: absolute;

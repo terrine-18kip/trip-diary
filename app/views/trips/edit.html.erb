@@ -36,6 +36,8 @@
               <%= link_to user_path(user.id) do %>
                 <% if user.image.attached? %>
                   <%= image_tag user.image, class:"user-image-small" %>
+                <% else %>
+                  <%= image_tag "default_user.png", class:"user-image-small" %>
                 <% end %>
                 <%= user.name %>
               <% end %>
@@ -58,9 +60,7 @@
     </div>
 
     <div class="show-trip-image">
-      <% if @trip.trip_image.attached? %>
-        <%= image_tag @trip.trip_image, class:"show-trip-image-pic"%>
-      <% end %>
+      <%= render "trip_image" %>
     </div>
 
   </div>

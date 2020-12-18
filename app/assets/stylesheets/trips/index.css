@@ -71,7 +71,7 @@ a {
 .trip-image:before {
   content: "";
   display: block;
-  padding-top: 50%;
+  padding-top: 56.25%;
 }
 .trip-image-pic {
   position: absolute;

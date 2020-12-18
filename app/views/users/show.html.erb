@@ -3,7 +3,13 @@
 <div class="main">
 
   <div class="user-info">
-    <div><%= image_tag @user.image, class:"image-list" %></div>
+    <div>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image, class:"image-list" %>
+      <% else %>
+        <%= image_tag "default_user.png", class:"image-list" %>
+      <% end %>
+    </div>
     <div class="user-info-right">
       <p class="user-name"><%= @user.name %></p>
       <p class="user-id">ID：<%= @user.id %></p>

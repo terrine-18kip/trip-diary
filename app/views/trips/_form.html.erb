@@ -12,13 +12,11 @@
 
         <div class="form-group">
           <div class="form-text">画像</div>
-          <label for="form-trip-image">
+          <label for="form-trip-image", class="trip-image-label">
             <div class="trip-image-btn">
               <div id="trip-image-list">
                 <div>
-                  <% if @trip.trip_image.attached? %>
-                    <%= image_tag @trip.trip_image, class:"trip-image-list" %>
-                  <% end %>
+                  <%= render 'trip_image' %>
                 </div>
               </div>
             </div>

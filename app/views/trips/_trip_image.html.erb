@@ -1,0 +1,29 @@
+<% if @trip.trip_image.attached? %>
+  <%= image_tag @trip.trip_image, class:"trip-image-pic"%>
+<% elsif !@trip.start_date %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 1 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 2 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 3 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 4 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 5 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 6 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 7 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 8 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 9 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 10 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% elsif @trip.start_date.mon == 11 %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% else %>
+  <%= image_tag "IMG_4812-2", class:"trip-image-pic"%>
+<% end %>
