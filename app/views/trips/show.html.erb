@@ -4,65 +4,75 @@
 
   <div class="show-trip">
 
-    <div class="show-trip-head">
-      <h1 class="show-trip-title"><%= @trip.title %></h1>
-      <div class="show-trip-edit">
-        <% if user_signed_in? && editor_user? %>
-          <%= link_to '編集する', edit_trip_path(@trip.id), method: :get %>
-        <% end %>
+    <div class="show-trip-content">
+      <div class="show-trip-head">
+        <h1 class="show-trip-title"><%= @trip.title %></h1>
+        <div class="show-trip-edit">
+          <% if user_signed_in? && editor_user? %>
+            <%= link_to '編集モード', edit_trip_path(@trip.id), method: :get %>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">期間</div>
-      <div class="show-trip-right">
-        <% if @trip.start_date && @trip.end_date %>
-          <%= l @trip.start_date %> 〜 <%= l @trip.end_date %>
-        <% elsif @trip.start_date && !@trip.end_date %>
-          <%= l @trip.start_date %> 〜
-        <% elsif !@trip.start_date && @trip.end_date %>
-          〜 <%= l @trip.end_date %>
-        <% else %>
-          未定
-        <% end %>
+      <div class="show-trip-list">
+        <div class="show-trip-left">期間</div>
+        <div class="show-trip-right">
+          <% if @trip.start_date && @trip.end_date %>
+            <%= l @trip.start_date %> 〜 <%= l @trip.end_date %>
+          <% elsif @trip.start_date && !@trip.end_date %>
+            <%= l @trip.start_date %> 〜
+          <% elsif !@trip.start_date && @trip.end_date %>
+            〜 <%= l @trip.end_date %>
+          <% else %>
+            未定
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">メンバー</div>
-      <div class="show-trip-right">
-        <% @trip.users.each do |user| %>
-          <div class="trip-member">
-            <%= link_to user_path(user.id) do %>
-              <% if user.image.attached? %>
-                <%= image_tag user.image, class:"user-image-small" %>
+      <div class="show-trip-list">
+        <div class="show-trip-left">メンバー</div>
+        <div class="show-trip-right">
+          <% @trip.users.each do |user| %>
+            <div class="trip-member">
+              <%= link_to user_path(user.id) do %>
+                <% if user.image.attached? %>
+                  <%= image_tag user.image, class:"user-image-small" %>
+                <% else %>
+                  <%= image_tag "default_user.png", class:"user-image-small" %>
+                <% end %>
+                <%= user.name %>
               <% end %>
-              <%= user.name %>
-            <% end %>
-          </div>
-        <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="show-trip-list">
+        <div class="show-trip-left">合計金額</div>
+        <div class="show-trip-right">
+          <% if @total != nil %><%= @total %>円<% end %>
+        </div>
+      </div>
+
+      <div class="show-trip-list">
+        <div class="show-trip-left">メモ</div>
+        <div class="show-trip-right"><%= @trip.memo %></div>
       </div>
     </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">合計金額</div>
-      <div class="show-trip-right">
-        <% if @total != nil %><%= @total %>円<% end %>
-      </div>
+    <div class="show-trip-image">
+      <%= render "trip_image" %>
     </div>
 
-    <div class="show-trip-list">
-      <div class="show-trip-left">メモ</div>
-      <div class="show-trip-right"><%= @trip.memo %></div>
-    </div>
   </div>
+
 
   <div class="show-plans">
     <% if @plans %>
       <% @plans.each do |plan| %>
         <div class="show-plan">
           <div class="show-plan-list">
-            <h2><%= "#{plan.daily}日目" %></h2>
+            <div class="show-plan-daily"><%= "#{plan.daily}日目" %></div>
             <div>
               <% if plan.trip.start_date %>
                 <%= l plan.trip.start_date + plan.daily - 1 %>
@@ -78,80 +88,112 @@
           </div>
 
           <div class="show-spots">
-            <ul class="show-spots-list", id="sort-list">
+            <ul class="show-spots-list">
               <% if plan.spots %>
                 <% @spots.each do |spot| %>
 
                   <% if spot.plan_id == plan.id %>
                     <% if spot.category_id <= 5 %>
                       <li class="show-spot">
-                        <div class="show-spot-time">
-                          <div class="show-spot-start-time">
-                            <% if spot.start_time %><%= l spot.start_time %><% end %>
+                        <div class="show-spot-upper">
+                          <div class="show-spot-time">
+                            <div class="show-spot-start-time">
+                              <% if spot.start_time %><%= l spot.start_time %><% end %>
+                            </div>
+                            <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                            <div class="show-spot-end-time">
+                              <% if spot.end_time %><%= l spot.end_time %><% end %>
+                            </div>
                           </div>
-                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
-                          <div class="show-spot-end-time">
-                            <% if spot.end_time %><%= l spot.end_time %><% end %>
+
+                          <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                          <div class="show-spot-main">
+                            <div><%= spot.name %></div>
+                          </div>
+                          
+                          <div class="show-spot-fee">
+                            <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                          </div>
+
+                          <div class="show-spot-editor">
+                            <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
                           </div>
                         </div>
 
-                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
-
-                        <div class="show-spot-main">
-                          <div><%= spot.name %></div>
+                        <div id="collapse<%= spot.id %>" class="show-spot-lower collapse">
+                          <div class="show-spot-link"><i class="fas fa-link"></i> <%= link_to spot.link, spot.link, target: :_blank %></div>
+                          <div class="show-spot-memo"><i class="fas fa-sticky-note"></i> <%= spot.memo %></div>
                         </div>
-                        
-                        <div class="show-spot-fee">
-                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                        </div>
-
-                        <div class="show-spot-editor"></div>
                       </li>
 
                     <% elsif spot.category_id <= 12 %>
                       <li class="show-spot">
-                        <div class="show-spot-time">
-                          <div class="show-spot-start-time">
-                            <% if spot.start_time %><%= l spot.start_time %><% end %>
+                        <div class="show-spot-upper">
+                          <div class="show-spot-time">
+                            <div class="show-spot-start-time">
+                              <% if spot.start_time %><%= l spot.start_time %><% end %>
+                            </div>
+                            <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                            <div class="show-spot-end-time">
+                              <% if spot.end_time %><%= l spot.end_time %><% end %>
+                            </div>
                           </div>
-                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
-                          <div class="show-spot-end-time">
-                            <% if spot.end_time %><%= l spot.end_time %><% end %>
+
+                          <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                          <div class="show-spot-main">
+                            <div><%= spot.name %></div>
+                          </div>
+                          
+                          <div class="show-spot-fee">
+                            <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                          </div>
+
+                          <div class="show-spot-editor">
+                            <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
                           </div>
                         </div>
 
-                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
-
-                        <div class="show-spot-main">
-                          <div><%= spot.name %></div>
+                        <div id="collapse<%= spot.id %>" class="show-spot-lower collapse">
+                          <div class="show-spot-link"><i class="fas fa-link"></i> <%= link_to spot.link, spot.link, target: :_blank %></div>
+                          <div class="show-spot-memo"><i class="fas fa-sticky-note"></i> <%= spot.memo %></div>
                         </div>
-                        
-                        <div class="show-spot-fee">
-                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                        </div>
-
-                        <div class="show-spot-editor"></div>
                       </li>
 
                     <% else %>
                       <li class="show-spot">
-                        <div class="show-spot-time">
-                          <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
+                        <div class="show-spot-upper">
+                          <div class="show-spot-time">
+                            <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
+                          </div>
+
+                          <div class="show-spot-category"></div>
+
+                          <div class="show-spot-main">
+                            <div><%= spot.name %></div>
+                          </div>
+                          
+                          <div class="show-spot-fee">
+                            <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                          </div>
+
+                          <div class="show-spot-editor">
+                            <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
+                          </div>
                         </div>
 
-                        <div class="show-spot-category"></div>
-
-                        <div class="show-spot-main">
-                          <div><%= spot.name %></div>
+                        <div id="collapse<%= spot.id %>" class="show-spot-lower collapse">
+                          <div class="show-spot-link"><i class="fas fa-link"></i> <%= link_to spot.link, spot.link, target: :_blank %></div>
+                          <div class="show-spot-memo"><i class="fas fa-sticky-note"></i> <%= spot.memo %></div>
                         </div>
-                        
-                        <div class="show-spot-fee">
-                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                        </div>
-
-                        <div class="show-spot-editor"></div>
                       </li>
                     <% end %>
+                    <script type="text/javascript">
+                        $('#button<%= spot.id %>').click(function(){
+                          $('#button<%= spot.id %>').toggleClass("fa-rotate-180"); 
+                        });
+                    </script>
                   <% end %>
 
                 <% end %>

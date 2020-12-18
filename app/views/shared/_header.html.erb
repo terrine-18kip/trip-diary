@@ -1,11 +1,11 @@
 <header>
   <div class="top-page-header">
     <div class="header-left">
-      <%=link_to image_tag("title_logo_diary1.png", height: '60', class:"title-logo"), root_path%>
+      <%=link_to image_tag("title_logo_diary2.png", class:"title-logo"), root_path%>
     </div>
     <ul class="header-list-right">
       <% if user_signed_in? %>
-        <li><%= link_to '旅の作成', new_trip_path %></li>
+        <li><%= link_to '旅の作成', new_trip_path, remote: true, class:"header-btn" %></li>
         <li class="header-user-info", id="user-info">
           <div class="header-user-name">
             <%= current_user.name %>
@@ -13,6 +13,8 @@
           <div>
             <% if current_user.image.attached? %>
               <%= image_tag current_user.image, class:"header-user-image" %>
+            <% else %>
+              <%= image_tag "default_user.png", class:"header-user-image" %>
             <% end %>
           </div>
         </li>
@@ -22,10 +24,11 @@
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           </ul>
       <% else %>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <li><%= link_to '新規登録', new_user_registration_path %></li>
+        <li><%= link_to 'ログイン', new_user_session_path, class:"header-btn" %></li>
+        <li><%= link_to '新規登録', new_user_registration_path, class:"header-btn" %></li>
       <% end %>
     </ul>
   </div>
+  <div id="spot-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
 </header>

@@ -3,12 +3,26 @@
     <%= form_with model: @trip, class:"trip-form", local: true do |f| %>
       <div class='form-wrap'>
         <div class='form-header'>
-          <h1 class='form-header-text'>
+          <div class='form-header-text'>
             旅の編集
-          </h1>
+          </div>
         </div>
 
         <%= render 'shared/error_messages', model: f.object %>
+
+        <div class="form-group">
+          <div class="form-text">画像</div>
+          <label for="form-trip-image", class="trip-image-label">
+            <div class="trip-image-btn">
+              <div id="trip-image-list">
+                <div>
+                  <%= render 'trip_image' %>
+                </div>
+              </div>
+            </div>
+            <%= f.file_field :trip_image, class:"form-trip-image", id:"form-trip-image" %>
+          </label>
+        </div>
 
         <div class="form-group">
           <div class="form-text">タイトル</div>
@@ -30,12 +44,13 @@
         </div>
 
         <div class="form-group">
-          
           <div class="form-text">友達を追加</div>
-          <div id="input-member">
-            <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
+          <div class="form-group-member">
+            <div id="input-members", class="input-members">
+              <input name="trip[user_ids][]" type="hidden" value=<%= current_user.id %>>
+            </div>
+            <div id="add-member", class="add-member">＋</div>
           </div>
-          <div id="add-member", class="add-member">＋</div>
         </div>
 
         <div class='register-btn'>
@@ -43,5 +58,44 @@
         </div>
       </div>
     <% end %>
+    <script type="text/javascript">
+      $(function () {
+        const InputMember = document.getElementById('input-members');
+        document.getElementById('add-member').addEventListener('click', function(e){
+          const inputElement = document.createElement('input');
+          inputElement.setAttribute("name","trip[user_ids][]");
+          inputElement.setAttribute("placeholder","IDを入力して下さい");
+          inputElement.setAttribute("class","input-member");
+          InputMember.appendChild(inputElement);
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(function () {
+        const ImageList = document.getElementById('trip-image-list');
+
+        const createImageHTML = (blob) => {
+          const imageElement = document.createElement('div');
+          const blobImage = document.createElement('img');
+          blobImage.setAttribute('src', blob);
+          blobImage.setAttribute('class', 'trip-image-list');
+          imageElement.appendChild(blobImage);
+          ImageList.appendChild(imageElement);
+        };
+
+        document.getElementById('form-trip-image').addEventListener('change', function(e){
+
+          const imageContent = document.querySelector('.trip-image-list');
+          if (imageContent){
+            imageContent.remove();
+          }
+
+          const file = e.target.files[0];
+          const blob =window.URL.createObjectURL(file);
+
+          createImageHTML(blob);
+        });
+      });
+    </script>
   </div>
 </div>

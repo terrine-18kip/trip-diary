@@ -2,7 +2,7 @@
   max-width: 1080px;
   width: 96vw;
   margin: 0 auto;
-  padding: 160px 40px;
+  padding: 7em 40px;
 }
 
 
@@ -10,48 +10,86 @@
   padding: 20px;
   margin-bottom: 3em;
   background-color: #f5f8fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
+.show-trip-content {
+  width: 60%;
+}
 .show-trip-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 4em;
 }
-
 .show-trip-title {
   font-size: larger;
   padding-left: 10%;
 }
-
 .show-trip-edit {
   padding-right: 6%;
 }
-
 .show-trip-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .show-trip-left {
-  width: 20%;
+  width: 15%;
+  min-width: 5em;
   text-align: center;
+  padding: .2em 1%;
 }
-
 .show-trip-right {
-  width: 75%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
 }
-
+.show-trip-image {
+  position: relative;
+  width: 40%;
+  margin-bottom: .5em;
+}
+.show-trip-image:before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+.show-trip-image-pic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+}
 
 .show-plan-list {
   height: 3em;
+  border-radius: .2em;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: #EFD6C3;
+}
+.show-plan-list-add {
+  width: 50%;
+  min-width: 210px;
+  height: 3em;
+  margin: 0 auto;
+  border-radius: .2em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #EFD6C3;
+}
+.show-plan-daily {
+  font-weight: 500;
 }
 
 .show-spots {
@@ -72,91 +110,125 @@
 
 .show-spot {
   width: 100%;
-  padding: 0.5em 3%;
+  padding: 0.5em 2%;
   border-bottom: .5px solid #ccc;
+}
+.show-spot-upper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.show-spot-lower {
+  width: 98%;
+  margin: .5em auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .show-spot-time {
-  width: 50px;
+  width: 3.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #CE8D75;
 }
 
 .show-spot-start-time {
   height: 1.2em;
   line-height: 1.2;
+  font-weight: 500;
 }
 
 .show-spot-end-time {
   height: 1.2em;
   line-height: 1.2;
+  font-weight: 500;
 }
 
 .show-spot-category {
-  width: 50px;
+  width: 1.5em;
   text-align: center;
-  color: #555;
+  color: #CE8D75;
 }
 
 
 .show-spot-main {
-  width: calc(95% - 280px);
+  width: calc(100% - 14em);
   font-size: larger;
   font-weight: 500;
 }
 
 
 .show-spot-fee {
-  width: 100px;
+  width: 5.5em;
   text-align: right;
 }
 
 .show-spot-editor {
-  width: 80px;
+  width: 4.5em;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.show-spot-editor a {
+  color: #777 !important;
+}
+
+.show-spot-link {
+  width: 50%;
+}
+.show-spot-memo {
+  width: 50%;
+}
+.fa-link {
+  color: #9B7E71;
+}
+.fa-sticky-note {
+  color: #9B7E71;
 }
 
 .show-spot-new {
   padding: 10px;
 }
 
+@media (max-width: 960px) {
+  .show-main {
+    padding: 6em 20px;
+  }
+}
+@media (max-width: 590px) {
+  .show-trip-content {
+    width: 100%;
+  }
+  .show-trip-image {
+    width: 100%;
+  }
+  .show-spot-lower {
+    width: 96%;
+  }
+  .show-spot-link {
+    width: 100%;
+  }
+  .show-spot-memo {
+    width: 100%;
+  }
+}
 @media (max-width: 500px) {
   .show-main {
-    padding: 160px 10px;
+    padding: 6em 10px;
   }
   .show-trip {
-    padding: 5px 5px 15px 5px;
+    padding: 8px;
+  }
+  .show-plan-list-add {
+    height: 2.5em;
   }
   .show-spot {
     padding: 0.4em 1%;
-  }
-  .show-spot-time {
-    width: 40px;
-  }
-  .show-spot-category {
-    width: 20px;
-  }
-  .show-spot-main {
-    width: calc(98% - 150px);
-    font-size: larger;
-    font-weight: 500;
-  }
-  .show-spot-fee {
-    width: 50px;
-    text-align: right;
-  }
-  .show-spot-editor {
-    width: 40px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
   .show-spot-new {
     padding: 0;

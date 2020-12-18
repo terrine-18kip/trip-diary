@@ -1,17 +1,20 @@
 <%= render "shared/header" %>
-<div class="main-top-content" >
-  <%= image_tag "IMG_9122-Edit3.jpg", class:"main-top-image" %>
-</div>
 
 <div class="main">
 
   <div class="user-info">
-    <div><%= image_tag @user.image, class:"image-list" %></div>
+    <div>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image, class:"image-list" %>
+      <% else %>
+        <%= image_tag "default_user.png", class:"image-list" %>
+      <% end %>
+    </div>
     <div class="user-info-right">
       <p class="user-name"><%= @user.name %></p>
       <p class="user-id">ID：<%= @user.id %></p>
       <% if current_user.id == @user.id %>
-        <p><%= link_to 'ユーザー情報の編集', edit_user_path(current_user), method: :get %></p>
+        <p><%= link_to 'ユーザー情報の編集', edit_user_path(current_user), remote: true, method: :get %></p>
       <% end %>
     </div>
   </div>
@@ -19,5 +22,6 @@
   <div class="trip-lists">
     <%= render "trips/trip_list" %>
   </div>
+  <div id="spot-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
 </div>
