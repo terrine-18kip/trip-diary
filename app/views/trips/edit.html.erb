@@ -90,113 +90,142 @@
           </div>
 
           <div class="show-spots">
-            <ul class="show-spots-list">
+            <ul class="show-spots-list", id="sort-list">
               <% if plan.spots %>
                 <% @spots.each do |spot| %>
 
                   <% if spot.plan_id == plan.id %>
                     <% if spot.category_id <= 5 %>
                       <li class="show-spot">
-                        <div class="show-spot-time">
-                          <div class="show-spot-start-time">
-                            <% if spot.start_time %><%= l spot.start_time %><% end %>
+                        <div class="show-spot-upper">
+                          <div class="show-spot-time">
+                            <div class="show-spot-start-time">
+                              <% if spot.start_time %><%= l spot.start_time %><% end %>
+                            </div>
+                            <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                            <div class="show-spot-end-time">
+                              <% if spot.end_time %><%= l spot.end_time %><% end %>
+                            </div>
                           </div>
-                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
-                          <div class="show-spot-end-time">
-                            <% if spot.end_time %><%= l spot.end_time %><% end %>
+
+                          <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                          <div class="show-spot-main">
+                            <div><%= spot.name %></div>
+                          </div>
+                          
+                          <div class="show-spot-fee">
+                            <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                          </div>
+
+                          <div class="show-spot-editor">
+                            <div class="show-spot-edit">
+                              <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
+                                <i class="fas fa-edit"></i>
+                              <% end %>
+                            </div>
+                            <div class="show-spot-delete">
+                              <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                                <i class="fas fa-trash-alt"></i>
+                              <% end %>
+                            </div>
+                            <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
                           </div>
                         </div>
 
-                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
-
-                        <div class="show-spot-main">
-                          <div><%= spot.name %></div>
-                        </div>
-                        
-                        <div class="show-spot-fee">
-                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                        </div>
-
-                        <div class="show-spot-editor">
-                          <div class="show-spot-edit">
-                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
-                              <i class="fas fa-edit"></i>
-                            <% end %>
-                          </div>
-                          <div class="show-spot-delete">
-                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
-                              <i class="fas fa-trash-alt"></i>
-                            <% end %>
-                          </div>
+                        <div id="collapse<%= spot.id %>" class="show-spot-lower collapse">
+                          <div class="show-spot-link"><i class="fas fa-link"></i> <%= link_to spot.link, spot.link, target: :_blank %></div>
+                          <div class="show-spot-memo"><i class="fas fa-sticky-note"></i> <%= spot.memo %></div>
                         </div>
                       </li>
 
                     <% elsif spot.category_id <= 12 %>
                       <li class="show-spot">
-                        <div class="show-spot-time">
-                          <div class="show-spot-start-time">
-                            <% if spot.start_time %><%= l spot.start_time %><% end %>
+                        <div class="show-spot-upper">
+                          <div class="show-spot-time">
+                            <div class="show-spot-start-time">
+                              <% if spot.start_time %><%= l spot.start_time %><% end %>
+                            </div>
+                            <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
+                            <div class="show-spot-end-time">
+                              <% if spot.end_time %><%= l spot.end_time %><% end %>
+                            </div>
                           </div>
-                          <div class="show-spot-while-time"><i class="fas fa-ellipsis-v fa-lg"></i></div>
-                          <div class="show-spot-end-time">
-                            <% if spot.end_time %><%= l spot.end_time %><% end %>
+
+                          <div class="show-spot-category"><%= raw spot.category.icon %></div>
+
+                          <div class="show-spot-main">
+                            <div><%= spot.name %></div>
+                          </div>
+                          
+                          <div class="show-spot-fee">
+                            <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                          </div>
+
+                          <div class="show-spot-editor">
+                            <div class="show-spot-edit">
+                              <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
+                                <i class="fas fa-edit"></i>
+                              <% end %>
+                            </div>
+                            <div class="show-spot-delete">
+                              <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                                <i class="fas fa-trash-alt"></i>
+                              <% end %>
+                            </div>
+                            <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
                           </div>
                         </div>
 
-                        <div class="show-spot-category"><%= raw spot.category.icon %></div>
-
-                        <div class="show-spot-main">
-                          <div><%= spot.name %></div>
-                        </div>
-                        
-                        <div class="show-spot-fee">
-                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                        </div>
-
-                        <div class="show-spot-editor">
-                          <div class="show-spot-edit">
-                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
-                              <i class="fas fa-edit"></i>
-                            <% end %>
-                          </div>
-                          <div class="show-spot-delete">
-                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
-                              <i class="fas fa-trash-alt"></i>
-                            <% end %>
-                          </div>
+                        <div id="collapse<%= spot.id %>" class="show-spot-lower collapse">
+                          <div class="show-spot-link"><i class="fas fa-link"></i> <%= link_to spot.link, spot.link, target: :_blank %></div>
+                          <div class="show-spot-memo"><i class="fas fa-sticky-note"></i> <%= spot.memo %></div>
                         </div>
                       </li>
 
                     <% else %>
                       <li class="show-spot">
-                        <div class="show-spot-time">
-                          <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
-                        </div>
-
-                        <div class="show-spot-category"></div>
-
-                        <div class="show-spot-main">
-                          <div><%= spot.name %></div>
-                        </div>
-                        
-                        <div class="show-spot-fee">
-                          <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
-                        </div>
-
-                        <div class="show-spot-editor">
-                          <div class="show-spot-edit">
-                            <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
-                              <i class="fas fa-edit"></i>
-                            <% end %>
+                        <div class="show-spot-upper">
+                          <div class="show-spot-time">
+                            <div class="show-spot-while-time"><i class="fas fa-random fa-lg fa-fw"></i></div>
                           </div>
-                          <div class="show-spot-delete">
-                            <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
-                              <i class="fas fa-trash-alt"></i>
-                            <% end %>
+
+                          <div class="show-spot-category"></div>
+
+                          <div class="show-spot-main">
+                            <div><%= spot.name %></div>
                           </div>
+                          
+                          <div class="show-spot-fee">
+                            <% if spot.fee %><%= "#{spot.fee}円" %><% end %>
+                          </div>
+
+                          <div class="show-spot-editor">
+                            <div class="show-spot-edit">
+                              <%= link_to edit_trip_plan_spot_path(@trip.id, plan.id, spot.id), remote: true, method: :get do %>
+                                <i class="fas fa-edit"></i>
+                              <% end %>
+                            </div>
+                            <div class="show-spot-delete">
+                              <%= link_to trip_plan_spot_path(@trip.id, plan.id, spot.id), method: :delete do %>
+                                <i class="fas fa-trash-alt"></i>
+                              <% end %>
+                            </div>
+                            <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
+                          </div>
+                        </div>
+
+                        <div id="collapse<%= spot.id %>" class="show-spot-lower collapse">
+                          <div class="show-spot-link"><i class="fas fa-link"></i> <%= link_to spot.link, spot.link, target: :_blank %></div>
+                          <div class="show-spot-memo"><i class="fas fa-sticky-note"></i> <%= spot.memo %></div>
                         </div>
                       </li>
                     <% end %>
+                    <script type="text/javascript">
+                      $('#button<%= spot.id %>').click(function(){
+                        $('#button<%= spot.id %>').toggleClass("fa-rotate-180"); 
+                      });
+                  </script>
                   <% end %>
 
                 <% end %>
