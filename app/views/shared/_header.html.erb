@@ -1,8 +1,6 @@
 <header>
   <div class="top-page-header">
-    <div class="header-left">
-      <%=link_to image_tag("title_logo_diary2.png", class:"title-logo"), root_path%>
-    </div>
+    <%=link_to image_tag("title_logo_diary2.png", class:"title-logo"), root_path%>
     <ul class="header-list-right">
       <% if user_signed_in? %>
         <li><%= link_to '旅の作成', new_trip_path, remote: true, class:"header-btn" %></li>
