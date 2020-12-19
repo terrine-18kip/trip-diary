@@ -1,7 +1,7 @@
 <% if @trip.trip_image.attached? %>
   <%= image_tag @trip.trip_image, class:"trip-image-pic"%>
 <% elsif !@trip.start_date %>
-  <%= image_tag "default", class:"trip-image-pic"%>
+  <%= image_tag "default00", class:"trip-image-pic"%>
 <% elsif @trip.start_date.mon == 1 %>
   <%= image_tag "default01", class:"trip-image-pic"%>
 <% elsif @trip.start_date.mon == 2 %>
