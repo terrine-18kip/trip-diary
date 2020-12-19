@@ -8,6 +8,11 @@
   z-index: 10;
 }
 
+.header-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .title-logo {
   height: 3.2em;
 }
