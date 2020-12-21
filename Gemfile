@@ -64,6 +64,7 @@ gem 'image_processing', '~> 1.2'
 gem 'active_hash'
 gem 'ranked-model'
 gem 'jquery-ui-rails'
+gem "aws-sdk-s3", require: false
 
 group :development do
   gem 'rubocop', require: false
