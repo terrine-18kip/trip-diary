@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to root_path
+      redirect_to user_path(@user.id)
       bypass_sign_in(@user)
     else
       render :edit
