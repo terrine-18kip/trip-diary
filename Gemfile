@@ -75,5 +75,3 @@ gem 'active_hash'
 gem 'ranked-model'
 gem 'jquery-ui-rails'
 gem "aws-sdk-s3", require: false
-gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
