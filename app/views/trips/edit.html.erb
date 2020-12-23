@@ -90,7 +90,7 @@
           </div>
 
           <div class="show-spots">
-            <ul class="show-spots-list", id="sortarea">
+            <ul class="show-spots-list", id="sort<%= plan.id %>">
               <% if plan.spots %>
                 <% @spots.each do |spot| %>
 
@@ -143,20 +143,26 @@
                         $('#button<%= spot.id %>').toggleClass("fa-rotate-180"); 
                       });
                     </script>
-                    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-                    <script type="text/javascript">
-                    new Sortable(sortarea,{
-                      animation: 150,
-                      ghostClass: 'ghost',
-                      chosenClass: 'light-green',
-                      delay: 100,
-                    });
-                    </script>
                   <% end %>
 
                 <% end %>
               <% end %>
             </ul>
+
+            <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.js"></script>
+            <script type="text/javascript">
+            new Sortable(sort<%= plan.id %>,{
+              animation: 150,
+              delay: 100,
+              onUpdate: function(evt) {
+                return $.ajax({
+                  url: 'plans/<%= plan.id %>/sort',
+                  type: 'get',
+                  data: { from: evt.oldIndex, to: evt.newIndex }
+                });
+              }
+            });
+            </script>
 
             <div class="show-spot-new">
               <%= link_to 'スケジュール追加', new_trip_plan_spot_path(@trip.id, plan.id), remote: true %>

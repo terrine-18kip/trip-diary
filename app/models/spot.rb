@@ -5,6 +5,7 @@ class Spot < ApplicationRecord
 
   belongs_to :plan
   belongs_to :trip
+  acts_as_list scope: :plan
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category

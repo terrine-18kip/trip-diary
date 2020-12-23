@@ -24,6 +24,14 @@ class PlansController < ApplicationController
     end
   end
 
+  def sort
+    @plan = Plan.find(params[:id])
+    spot = @plan.spots[params[:from].to_i]
+    spot.insert_at(params[:to].to_i + 1)
+    spot.save
+    render body: nil
+  end
+
   private
 
   def set_plan
