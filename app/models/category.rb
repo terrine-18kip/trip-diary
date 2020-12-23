@@ -9,7 +9,7 @@ class Category < ActiveHash::Base
     { id: 6, name: '徒歩', icon: '<i class="fas fa-walking fa-lg fa-fw"></i>' },
     { id: 7, name: 'バス', icon: '<i class="fas fa-bus fa-lg fa-fw"></i>' },
     { id: 8, name: '鉄道', icon: '<i class="fas fa-subway fa-lg fa-fw"></i>' },
-    { id: 9, name: '飛行機', icon: '<i class="fas fa-plane fa-lg fa-fw"></i>' },
+    { id: 9, name: '飛行機', icon: '<i class="fas fa-plane fa-lg fa-fw fa-rotate-315"></i>' },
     { id: 10, name: '船', icon: '<i class="fas fa-ship fa-lg fa-fw"></i>' },
     { id: 11, name: '車', icon: '<i class="fas fa-car-alt fa-lg fa-fw"></i>' },
     { id: 12, name: '自転車', icon: '<i class="fas fa-bicycle fa-lg fa-fw"></i>' },

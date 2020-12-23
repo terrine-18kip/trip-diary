@@ -38,12 +38,6 @@ class SpotsController < ApplicationController
     end
   end
 
-  def sort
-    spot = Spot.find(params[:id])
-    spot.update(spot_params)
-    render body: nil
-  end
-
   private
 
   def set_spot
@@ -53,6 +47,6 @@ class SpotsController < ApplicationController
   end
 
   def spot_params
-    params.require(:spot).permit(:name, :category_id, :start_time, :end_time, :fee, :link, :memo, :row_order_position).merge(plan_id: params[:plan_id], trip_id: params[:trip_id])
+    params.require(:spot).permit(:name, :category_id, :start_time, :end_time, :fee, :link, :memo, :position).merge(plan_id: params[:plan_id], trip_id: params[:trip_id])
   end
 end

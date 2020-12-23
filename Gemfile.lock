@@ -58,6 +58,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    acts_as_list (1.0.2)
+      activerecord (>= 4.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
@@ -138,8 +140,6 @@ GEM
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
-    jquery-ui-rails (6.0.1)
-      railties (>= 3.2.16)
     kgio (2.11.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -322,6 +322,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  acts_as_list
   aws-sdk-s3
   bootsnap (>= 1.4.2)
   byebug
@@ -336,7 +337,6 @@ DEPENDENCIES
   faker
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   mini_magick
   mysql2 (>= 0.5.3)

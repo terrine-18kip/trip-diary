@@ -106,9 +106,6 @@ a {
 }
 
 @media (max-width: 960px) {
-  * {
-    font-size: 97%;
-  }
   .main-top-image-l {
     display: none;
   }

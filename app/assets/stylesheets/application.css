@@ -27,7 +27,8 @@
    min-height: 100vh;
    position: relative;
    padding-bottom: 3em;
- }
+   font-size: 15px;
+  }
 
  .user-image-small {
   width: 1.5em;
@@ -35,4 +36,14 @@
   object-fit: cover;
   border-radius: 50%;
   vertical-align: middle;
+}
+@media (max-width: 960px) {
+  * {
+    font-size: 97%;
+  }
+}
+@media (max-width: 500px) {
+  * {
+    font-size: 94%;
+  }
 }

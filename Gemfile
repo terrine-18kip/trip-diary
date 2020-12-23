@@ -73,5 +73,5 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'active_hash'
 gem 'ranked-model'
-gem 'jquery-ui-rails'
+gem 'acts_as_list'
 gem "aws-sdk-s3", require: false
