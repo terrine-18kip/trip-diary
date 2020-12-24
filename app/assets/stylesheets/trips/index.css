@@ -62,6 +62,21 @@ a {
 .wp-title {
   font-weight: 500;
 }
+.wp-site {
+  font-size: smaller;
+  color: #777;
+  padding-right: 1em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.wp-favicon {
+  height: 1.4em;
+  padding-right: .2em;
+}
+.wp-url {
+  line-height: 1.3em;
+}
 
 .trip-lists {
   display: flex;

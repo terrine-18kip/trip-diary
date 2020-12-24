@@ -179,6 +179,7 @@
 
 .show-spot-editor {
   width: 4.5em;
+  height: 3em;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -187,21 +188,29 @@
   color: #777 !important;
 }
 
-.show-spot-link {
+.show-spot-link, .show-spot-memo {
   width: 50%;
 }
-.show-spot-memo {
-  width: 50%;
-}
-.fa-link {
-  color: #9B7E71;
-}
-.fa-sticky-note {
+.fa-link, .fa-sticky-note {
   color: #9B7E71;
 }
 
 .show-spot-new {
   padding: 10px;
+}
+
+.fa-chevron-down, .fa-trash-alt, .fa-edit {
+  transition: .3s;
+  display: block;
+  width: 1.5em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  font-size: 1.1em;
+}
+.fa-chevron-down:hover, .fa-trash-alt:hover, .fa-edit:hover {
+  color: #CE8D75;
+  transition: .3s;
 }
 
 @media (max-width: 960px) {

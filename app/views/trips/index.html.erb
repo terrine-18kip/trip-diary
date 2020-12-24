@@ -21,6 +21,10 @@
     <%= link_to item["link"], target: '_blank', class:"wp-item wp-item#{i}" do %>
       <%= image_tag item["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"]["source_url"], class:"trip-image" %>
       <p class="wp-title"><%= item["title"]["rendered"] %></p>
+      <div class="wp-site">
+        <%= image_tag "wp-favicon.png", class:"wp-favicon"%>
+        <p class="wp-url">18kipper.com</p>
+      </div>
     <% end %>
   <% end %>
   </div>
