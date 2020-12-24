@@ -14,6 +14,17 @@
 </div>
 
 <div class="main">
+
+  <h2>おすすめスポット</h2>
+  <div class="wp-items">
+  <% @items.shuffle.first(4).each_with_index do |item, i| %>
+    <%= link_to item["link"], target: '_blank', class:"wp-item wp-item#{i}" do %>
+      <%= image_tag item["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"]["source_url"], class:"trip-image" %>
+      <p class="wp-title"><%= item["title"]["rendered"] %></p>
+    <% end %>
+  <% end %>
+  </div>
+
   <h2>みんなの旅</h2>
   <div class="trip-lists">
     <%= render "trip_list" %>

@@ -43,12 +43,31 @@ a {
   padding: 5em 0;
 }
 
+.wp-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 2em;
+}
+.wp-item {
+  display: block;
+  width: 24%;
+  padding: .5em;
+  transition: all 0.3s ease-in-out;
+}
+.wp-item:hover {
+  background-color: #f5f8fa;
+  transition: all 0.3s ease-in-out;
+}
+.wp-title {
+  font-weight: 500;
+}
+
 .trip-lists {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-
 .trip-list {
   display: block;
   width: 32%;
@@ -57,12 +76,10 @@ a {
   background-color: #f9f9f9;
   transition: all 0.3s ease-in-out;
 }
-
 .trip-list:hover {
   background-color: #f5f8fa;
   transition: all 0.3s ease-in-out;
 }
-
 .trip-image {
   position: relative;
   width: 100%;
@@ -119,6 +136,12 @@ a {
   .main-top-text-l {
     font-size: 28px;
   }
+  .wp-item {
+    width: 32%;
+  }
+  .wp-item3 {
+    display: none;
+  }
   .trip-list {
     width: 49%;
   }
@@ -140,6 +163,15 @@ a {
   }
   .main-top-text-l {
     font-size: 25px;
+  }
+  .main {
+    padding: 2em 0;
+  }
+  .wp-item {
+    width: 49%;
+  }
+  .wp-item3 {
+    display: block;
   }
   .trip-list {
     width: 98%;
