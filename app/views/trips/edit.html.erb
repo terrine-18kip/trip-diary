@@ -2,6 +2,9 @@
 
 <div class="show-main">
 
+  <h2>編集モード</h2>
+
+
   <div class="show-trip">
 
     <div class="show-trip-content">
@@ -95,7 +98,7 @@
                 <% @spots.each do |spot| %>
 
                   <% if spot.plan_id == plan.id %>
-                    <li class="show-spot", id="spot<%= spot.id %>", data: { model_name: spot.class.name.underscore, update_url: spot_sort_path(spot)}>
+                    <li class="show-spot show-spot-sort", id="spot<%= spot.id %>", data: { model_name: spot.class.name.underscore, update_url: spot_sort_path(spot)}>
                       <div class="show-spot-upper">
                         <div class="show-spot-time">
                           <div class="show-spot-start-time">
@@ -128,7 +131,11 @@
                               <i class="fas fa-trash-alt"></i>
                             <% end %>
                           </div>
-                          <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
+                          <% if spot.link != "" || spot.memo != "" %>
+                            <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
+                          <% else %>
+                            <p><i class="fas fa-chevron-down" style="color: transparent;"></i></p>
+                          <% end %>
                         </div>
                       </div>
 

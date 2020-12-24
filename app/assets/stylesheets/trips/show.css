@@ -112,12 +112,15 @@
   width: 100%;
   padding: 0.5em 2%;
   border-bottom: .5px solid #ccc;
+}
+.show-spot-sort {
   cursor: pointer;
   transition: background .5s;
 }
-.show-spot:hover {
+.show-spot-sort:hover {
   background: #f5f8fa;
 }
+
 .show-spot-upper {
   width: 100%;
   display: flex;
