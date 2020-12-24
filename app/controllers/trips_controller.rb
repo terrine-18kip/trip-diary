@@ -9,6 +9,7 @@ class TripsController < ApplicationController
 
   def index
     @trips = Trip.all.order(created_at: 'DESC')
+    @items = WpItem.get
   end
 
   def new

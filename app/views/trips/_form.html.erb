@@ -32,9 +32,9 @@
           <div class="form-group">
             <div class="form-text">期間</div>
             <div class="form-group-date">
-              <%= f.date_field :start_date, class:"input-date" %>
-              <div>〜</div>
-              <%= f.date_field :end_date, class:"input-date" %>
+              <%= f.date_field :start_date, class:"input-default input-date" %>
+              <div class="tilde">〜</div>
+              <%= f.date_field :end_date, class:"input-default input-date" %>
             </div>
           </div>
 
@@ -65,7 +65,7 @@
           const inputElement = document.createElement('input');
           inputElement.setAttribute("name","trip[user_ids][]");
           inputElement.setAttribute("placeholder","IDを入力して下さい");
-          inputElement.setAttribute("class","input-member");
+          inputElement.setAttribute("class","input-default input-member");
           InputMember.appendChild(inputElement);
         });
       });

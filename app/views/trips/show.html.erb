@@ -2,6 +2,8 @@
 
 <div class="show-main">
 
+  <h2>旅のしおり</h2>
+
   <div class="show-trip">
 
     <div class="show-trip-content">
@@ -117,7 +119,11 @@
                           </div>
 
                           <div class="show-spot-editor">
+                          <% if spot.link != "" || spot.memo != "" %>
                             <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
+                          <% else %>
+                            <p><i class="fas fa-chevron-down" style="color: transparent;"></i></p>
+                          <% end %>
                           </div>
                         </div>
 
@@ -151,7 +157,11 @@
                           </div>
 
                           <div class="show-spot-editor">
+                          <% if spot.link != "" || spot.memo != "" %>
                             <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
+                          <% else %>
+                            <p><i class="fas fa-chevron-down" style="color: transparent;"></i></p>
+                          <% end %>
                           </div>
                         </div>
 
@@ -179,7 +189,11 @@
                           </div>
 
                           <div class="show-spot-editor">
+                          <% if spot.link != "" || spot.memo != "" %>
                             <a data-toggle="collapse" href="#collapse<%= spot.id %>", id="button<%= spot.id %>"><i class="fas fa-chevron-down"></i></a>
+                          <% else %>
+                            <p><i class="fas fa-chevron-down" style="color: transparent;"></i></p>
+                          <% end %>
                           </div>
                         </div>
 

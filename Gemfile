@@ -75,3 +75,4 @@ gem 'active_hash'
 gem 'ranked-model'
 gem 'acts_as_list'
 gem "aws-sdk-s3", require: false
+gem 'faraday'
