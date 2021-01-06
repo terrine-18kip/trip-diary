@@ -9,6 +9,8 @@ a {
 }
 .main-top-image-l {
   width: 100vw;
+  height: 100vh;
+  object-fit: cover;
 }
 .main-top-image-m {
   display: none;
@@ -144,6 +146,8 @@ a {
   .main-top-image-m {
     display: block;
     width: 100vw;
+    height: 100vh;
+    object-fit: cover;
   }
   .main-top-image-s {
     display: none;
@@ -175,6 +179,8 @@ a {
   .main-top-image-s {
     display: block;
     width: 100vw;
+    height: 100vh;
+    object-fit: cover;
   }
   .main-top-text-l {
     font-size: 25px;
