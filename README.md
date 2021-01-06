@@ -12,6 +12,11 @@ trip diary
 
 https://trip-diary-18.herokuapp.com/
 
+# テスト用アカウント
+
+メールアドレス：test@sample.com
+パスワード：test1234
+
 # 利用方法
 
 1. ヘッダー「新規登録」ボタンからユーザー情報を登録
