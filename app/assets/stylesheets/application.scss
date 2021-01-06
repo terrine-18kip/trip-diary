@@ -41,7 +41,7 @@
   }
   h2:before {
     content: "";
-    background: url("header_diary1.png") no-repeat;
+    background-image: image-url("header_diary1.png");
     height: 1.6em;
     width: 1.6em;
     display: inline-block;
