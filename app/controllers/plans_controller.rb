@@ -10,10 +10,12 @@ class PlansController < ApplicationController
   end
 
   def update
-    if @plan.update(plan_params)
-      redirect_to edit_trip_path(@trip.id)
-    else
-      render :edit
+    respond_to do |format|
+      if @plan.update(plan_params)
+        format.js { render js: "window.location = '#{edit_trip_path(@trip.id)}'" }
+      else
+        format.js { render js: "alert('正しい数値を入力して下さい');" }
+      end
     end
   end
 

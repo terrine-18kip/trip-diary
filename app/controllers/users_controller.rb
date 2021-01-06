@@ -9,11 +9,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
-      bypass_sign_in(@user)
-    else
-      render :edit
+    respond_to do |format|
+      if @user.update(user_params)
+        format.js { render js: "window.location = '#{user_path(@user.id)}'" }
+        bypass_sign_in(@user)
+      else
+        format.js { render js: "alert('正しい値を入力して下さい');" }
+      end
     end
   end
 

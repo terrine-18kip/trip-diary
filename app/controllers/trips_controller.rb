@@ -2,8 +2,7 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
   before_action :set_plans, only: [:show, :edit]
   before_action :move_to_index, only: [:edit, :destroy]
-  before_action :create_user_valid?, only: :create
-  before_action :update_user_valid?, only: :update
+  before_action :user_valid?, only: [:create, :update]
 
   helper_method :editor_user?
 
@@ -18,10 +17,12 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
-    if @trip.save
-      redirect_to edit_trip_path(@trip.id)
-    else
-      render :new
+    respond_to do |format|
+      if @trip.save
+        format.js { render js: "window.location = '#{edit_trip_path(@trip.id)}'" }
+      else
+        format.js { render js: "alert('タイトルを入力して下さい');" }
+      end
     end
   end
 
@@ -32,10 +33,13 @@ class TripsController < ApplicationController
   end
 
   def update
-    if @trip.update(trip_params)
-      redirect_to edit_trip_path(@trip.id)
-    else
-      render :edit
+    respond_to do |format|
+      if @trip.update(trip_params)
+        format.js { render js: "window.location = '#{edit_trip_path(@trip.id)}'" }
+      else
+        format.json { render json: @trip.errors, status: :unprocessable_entity }
+        format.js { render js: "alert('タイトルを入力して下さい');" }
+      end
     end
   end
 
@@ -69,15 +73,7 @@ class TripsController < ApplicationController
     redirect_to action: :index unless editor_user?
   end
 
-  def create_user_valid?
-    user_validation = params[:trip][:user_ids]
-    user_validation.split(',')
-    user_validation.each do |user_id|
-      render :new unless User.find_by(id: user_id)
-    end
-  end
-
-  def update_user_valid?
+  def user_valid?
     user_validation = params[:trip][:user_ids]
     user_validation.split(',')
     user_validation.each do |user_id|

@@ -10,10 +10,12 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spot_params)
-    if @spot.save
-      redirect_to edit_trip_path(@spot.plan.trip.id)
-    else
-      render :new
+    respond_to do |format|
+      if @spot.save
+        format.js { render js: "window.location = '#{edit_trip_path(@spot.plan.trip.id)}'" }
+      else
+        format.js { render js: "alert('スポット名を入力して下さい');" }
+      end
     end
   end
 
@@ -22,10 +24,12 @@ class SpotsController < ApplicationController
   end
 
   def update
-    if @spot.update(spot_params)
-      redirect_to edit_trip_path(@trip.id)
-    else
-      render :edit
+    respond_to do |format|
+      if @spot.update(spot_params)
+        format.js { render js: "window.location = '#{edit_trip_path(@trip.id)}'" }
+      else
+        format.js { render js: "alert('スポット名を入力して下さい');" }
+      end
     end
   end
 
