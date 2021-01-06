@@ -13,7 +13,7 @@ if (document.URL.match( /sign_up/ )) {
 
     document.getElementById('profile-image').addEventListener('change', function(e){
 
-      const imageContent = document.querySelector('img');
+      const imageContent = document.querySelector('.image-list');
       if (imageContent){
         imageContent.remove();
       }
