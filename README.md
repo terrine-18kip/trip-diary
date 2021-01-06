@@ -14,8 +14,7 @@ https://trip-diary-18.herokuapp.com/
 
 # テスト用アカウント
 
-メールアドレス：test@sample.com
-
+メールアドレス：test@sample.com <br>
 パスワード：test1234 
 
 # 利用方法
